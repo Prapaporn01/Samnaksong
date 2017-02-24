@@ -21,7 +21,7 @@ class ActivitypicController extends Controller
     public function index($id)
     {
 
-        $item = DB::table('activities_pic')->where('activities_id',$id)->paginate(5);
+        $item = DB::table('activities_pic')->where('activities_id',$id)->paginate(4);
 
         return view('Admin.Activitypicadmin',['activities_pic'=>$item]);
     }
@@ -89,7 +89,6 @@ class ActivitypicController extends Controller
      */
     public function destroy($id)
     {
-
         $activities= Activitypic::find($id);
 
         $id_return=$activities->activities_id;

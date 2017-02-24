@@ -103,8 +103,8 @@ class PlaceController extends Controller
         $place->place_url = $request->place_url;
         $place->place_facebook = $request->place_facebook;
         $place->place_description = $request->place_description;
-       
-        $place->place_pic = $request->place_pic;
+       dd($place);
+        
         if ($request->hasFile('place_pic')) {// hasFile + variable name of image
             // $filename = str_random(10) . '.' . $request->file('place_pic')->getClientOriginalExtension();
           
@@ -113,10 +113,9 @@ class PlaceController extends Controller
             Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
             $place->place_pic = $filename;
             File::delete(public_path() . '/images/' . $place->place_pic);
-
         }
         $place->save();
-        $place->update($request->all()); //mass asignment , define $fillable(model)
+       
         return redirect()->action('PlaceController@index');
     }
 

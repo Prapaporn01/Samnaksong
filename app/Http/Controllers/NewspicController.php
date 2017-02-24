@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Newspic;
+use App\News;
+use Image;
+use File;
+
 
 class NewspicController extends Controller
 {
@@ -14,7 +19,7 @@ class NewspicController extends Controller
      */
     public function index($id)
     {
-        $item = DB::table('news_pic')->where('news_id',$id)->paginate(2);
+        $item = DB::table('news_pic')->where('news_id',$id)->paginate(4);
         return view('Admin.Newspicadmin',['news_pic'=>$item]);    
     }
 
@@ -80,7 +85,16 @@ class NewspicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    { 
+        $newspic= Newspic::find($id);
+        
+        $id_return=$newspic->news_id;
+
+            File::delete(public_path() . '\\images\\' . $newspic->news_file_pic);
+            File::delete(public_path() . '\\images\\resize\\' . $newspic->news_file_pic);
+        
+        $newspic->delete();
+
+        return redirect()->action('NewspicController@index', ['id' => $id_return]);
     }
 }

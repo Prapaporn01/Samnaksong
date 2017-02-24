@@ -21,7 +21,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $item= News::orderBy('news_id', 'desc')->paginate(5);
+        $item= News::orderBy('news_id', 'desc')->paginate(3);
         return view('Admin.Newsadmin',['News'=>$item]);
     }
 
@@ -41,7 +41,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsRequest $request)
+    public function store(Request $request)
     {
      
         $news= new News();
@@ -79,7 +79,6 @@ class NewsController extends Controller
                 Image::make(public_path() . '/images/' . $filename )
                         ->resize(150, 150)
                         ->save(public_path() . '/images/resize/' . $filename);
-
 
                 $newspic->news_file_pic = $filename;
                 File::delete(public_path() . '/images/' . $newspic->news_file_pic);

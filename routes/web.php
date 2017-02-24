@@ -106,6 +106,7 @@ Route::get('/ActivityadminAdd', function () {
 Route::resource('News', 'NewsController');
 Route::get('/Newspicadmin/{id}','NewspicController@index');
 Route::get('/Newspicdelete/{id}','NewsController@deletepic');
+Route::delete('/Newspic/{id}','NewspicController@destroy');
 
 
 Route::get('/NewsAdd', function () {

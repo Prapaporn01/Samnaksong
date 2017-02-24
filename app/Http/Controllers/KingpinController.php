@@ -118,12 +118,12 @@ class KingpinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(KingpinRequest $request, $id)
-    {
+    { 
         $kingpin = Kingpin::find($id);
         $kingpin->kingpin_name= $request->kingpin_name;
         $kingpin->kingpin_detail=$request->kingpin_detail;
         $kingpin->kingpin_type=$request->kingpin_type;
-
+        dd($kingpin);
 
         if ($request->hasFile('kingpinmain_pic')) {
 

@@ -44,7 +44,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                     @foreach ($Activity as $row)
+                     @foreach ($activities as $row)
                       <tr>
                         <td>                            
                             <img src="{{ 'images/resize/'.$row->activitiesmain_pic }}">
@@ -75,7 +75,7 @@
                         <td>{{$row->activities_date}}</td>
                         <td><a href="{{ url('/Activitypicadmin/'.$row->activities_id)}}"><div style='   margin-right:5px; float:right; '><input type="submit" class="btn btn-success btn-sm"  value="จัดการรูปในอัลบัมกิจกรรม"></div></a></td>
                         
-                        <td><button class="btn btn-primary btn-lg active btn-sm" type="submit">แก้ไขข้อมูล</button></td>
+                        <td><a href="{{ url('/Activity/'.$row->activities_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit">แก้ไขข้อมูล</button></a></td>
 
                         <td>
                         <?= Form::open(array('url' => 'Activity/' . $row->activities_id,
@@ -95,7 +95,7 @@
             <div class="row">
                     <div class="col-md-12">
                         <div align="center">
-                            {{ $Activity->links() }}
+                            {{ $activities->links() }}
                         </div>  
                     </div>
                 </div>

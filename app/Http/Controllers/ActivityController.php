@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ActivityRequest;
 use App\Activity;
 use App\Activitypic;
 use Image;
@@ -19,8 +20,10 @@ class ActivityController extends Controller
      */
     public function index()
     {
+
         $item= Activity::orderBy('activities_id', 'desc')->paginate(9);
-        return view('Admin.Activityadmin',['Activity'=>$item]);
+        return view('Admin.Activityadmin',['activities'=>$item]);
+
     }
 
     /**
@@ -39,7 +42,7 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActivityRequest $request)
     {
         $activity= new Activity();
         $activity->activities_name= $request->activities_name;
@@ -105,7 +108,8 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        return view('Admin.ActivityEditadmin', ['activity' => $activity]);
     }
 
     /**
@@ -115,9 +119,9 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(ActivityRequest $request, $id)
+    { 
+      dd(1234);
     }
 
     /**

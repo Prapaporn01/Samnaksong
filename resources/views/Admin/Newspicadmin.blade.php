@@ -39,7 +39,7 @@
                             <img src='../images/resize/<?php echo $row->news_file_pic; ?>'>
                         </td>
                             <td>
-                        <?= Form::open(array('url' => 'Newspicadmin/' . $row->news_pic_id,
+                        <?= Form::open(array('url' => 'Newspic/' . $row->news_pic_id,
                         'method' => 'delete')) ?>
                         <button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบ</button>
                         {!! Form::close() !!}
