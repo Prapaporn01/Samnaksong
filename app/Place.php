@@ -11,6 +11,6 @@ class Place extends Model
 	protected $primaryKey = 'place_id';
 	
     protected $table="Place";
-    protected $fillable=["place_name","place_url","place_facebook","place_description"];
+    protected $fillable=["place_name","place_url","place_facebook","place_description","place_pic"];
 
 }

@@ -1,0 +1,1 @@
+﻿positionForPages[54]={page:54,positions:[{word:"cBmnui",left:0.488803,top:0.467226,width:0.277324,height:0.027912},{word:"UCLU",left:0.315736,top:0.130775,width:0.120275,height:0.018841},{word:"www.kalyanamitra.org",left:0.351502,top:0.968356,width:0.296951,height:0.029055}]};

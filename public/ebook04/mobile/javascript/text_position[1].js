@@ -1,0 +1,1 @@
+﻿positionForPages[1]={page:1,positions:[{word:"วางใจ",left:0.136350,top:0.103372,width:0.259834,height:0.121013},{word:"ให้เป็น",left:0.594177,top:0.106849,width:0.256845,height:0.112951},{word:"พระไพศาล วิสาโล",left:0.598962,top:0.197853,width:0.271833,height:0.056898}]};

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PlaceUser;
+use App\Place;
 
 class PlaceuserController extends Controller
 {
@@ -14,7 +14,7 @@ class PlaceuserController extends Controller
      */
     public function index()
     {
-        $item= PlaceUser::paginate(4);
+        $item= Place::paginate(5);
         return view('User.PlaceUser',['place'=>$item]);
     }
 

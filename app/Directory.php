@@ -11,5 +11,5 @@ class Directory extends Model
 	protected $primaryKey = 'directory_id';
 	
     protected $table="Directory";
-    protected $fillable=["directory_name","directory_name_fair","directory_time","directory_position"];
+    protected $fillable=["directory_name","directory_name_fair","directory_time","directory_position","directory_detail","directorymain_pic"];
 }

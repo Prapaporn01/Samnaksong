@@ -96,14 +96,14 @@ class PlaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PlaceRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $place = Place::find($id);
         $place->place_name = $request->place_name;
         $place->place_url = $request->place_url;
         $place->place_facebook = $request->place_facebook;
         $place->place_description = $request->place_description;
-       dd($place);
+ 
         
         if ($request->hasFile('place_pic')) {// hasFile + variable name of image
             // $filename = str_random(10) . '.' . $request->file('place_pic')->getClientOriginalExtension();
@@ -128,7 +128,6 @@ class PlaceController extends Controller
     public function destroy($id)
     {
         $place = Place::find($id);
-      
             File::delete(public_path() . '\\images\\' . $place->place_pic);
             File::delete(public_path() . '\\images\\resize\\' . $place->place_pic);
         $place->delete();
@@ -140,6 +139,7 @@ class PlaceController extends Controller
         $place= Place::find($id);
             File::delete(public_path() . '\\images\\' . $place->place_pic);
             File::delete(public_path() . '\\images\\resize\\' . $place->place_pic);
+            
         $place->place_pic  = null;
         $place->save();
 

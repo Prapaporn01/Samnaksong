@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -15,54 +22,54 @@
 .pagination > li > span {
   color: #8a6d3b;
 }
-
+b.font1{
+  font-size:16px;
+}
 </style>
 
 <body>
 
-        <div class="col-md-9">
-        <br>
-        
-        <form METHOD="LINK" ACTION="{{url('/Activity/create')}}">
-                            <input type="submit" class="btn btn-info btn-lg" style='float:right;' value="เพิ่มข้อมูลรูปภาพกิจกรรม">
+        <div class="col-md-9 " style="margin-top: 5px;margin-bottom: 5px;">
+
+                        <form METHOD="LINK" ACTION="{{url('/Activity/create')}}">
+                            <input type="submit" class="btn btn-info btn-lg" style='float:right;' value="เพิ่มข้อมูลกิจกรรม">
                         </form>
-        
-
-
-       
         <br>
+        <br>
+        <div class="table-responsive">
             <table class="table table-striped">
                     <thead >
                       <tr>
-                        <th width="10%">รูปปก</th>
-                        <th width="30%">ชื่อกิจกรรม</th>      
-                        <th width="10%">รายละเอียด</th>
-                        <th width="20%">วันที่อัพเดท</th>
-                        <th width="15%">จัดการรูปภาพกิจกรรม</th>
+                        <th width="10%"><h4><b>รูปปก</b></h4></th>
+                        <th width="30%"><h4><b>ชื่อกิจกรรม</b></h4></th>      
+                        <th width="15%"><h4><b>รายละเอียด</b></h4></th>
+                        <th width="15%"><h4><b>วันที่อัพเดท</b></h4></th>
+                        <th width="2%"></th>
                         <th width="2%"></th>
                         <th width="2%"></th>
                       </tr>
                     </thead>
                     <tbody>
-                     @foreach ($activities as $row)
+                     
                       <tr>
+                      @foreach ($activities as $row)
                         <td>                            
                             <img src="{{ 'images/resize/'.$row->activitiesmain_pic }}">
                         </td>
                         <td>{{$row->activities_name}}</td>
                         <td>
                          <!-- Trigger the modal with a button -->
-                                  <button href="#deleteModal_{{$row->activities_id }}" type="button" class="btn btn-default btn-sm" data-toggle="modal" >ดูรายละอียด</button>
+                                  <button href="#deleteModal_{{$row->activities_id }}" type="button" class="btn btn-default btn-lg active btn-sm" data-toggle="modal" ><b  class="font1">ดูรายละอียด</b></button>
 
                                   <!-- Modal -->
                                   <div class="modal fade" id="deleteModal_{{ $row->activities_id  }}" role="dialog">
                                     <div class="modal-dialog modal-sm">
                                       <div class="modal-content">
                                         <div class="modal-header">                                         
-                                          <h4 class="modal-title">รายละเอียด</h4>
+                                          <h4 class="modal-title"><b>รายละเอียด</b></h4>
                                         </div>
                                         <div class="modal-body">
-                                          <p>{{$row->activities_detail}}</p>
+                                          <p><h4>{{$row->activities_detail}}</h4></p>
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -72,27 +79,32 @@
                                   </div>
                         </td>
 
-                        <td>{{$row->activities_date}}</td>
-                        <td><a href="{{ url('/Activitypicadmin/'.$row->activities_id)}}"><div style='   margin-right:5px; float:right; '><input type="submit" class="btn btn-success btn-sm"  value="จัดการรูปในอัลบัมกิจกรรม"></div></a></td>
+                        <td>{{ $row->activities_date->format('d.m.Y') }}</td>
+                        <td><a href="{{ url('/Activitypicadmin/'.$row->activities_id)}}"><div style='   margin-right:5px; float:right; '><input type="submit" class="btn btn-success btn-lg active btn-sm"  value="รูปในอัลบัม" style="font-size:16px; font-weight:bold;"></div></a></td>
                         
-                        <td><a href="{{ url('/Activity/'.$row->activities_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit">แก้ไขข้อมูล</button></a></td>
+                        <td><a href="{{ url('/Activity/'.$row->activities_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit"><b  class="font1">แก้ไข</b></button></a></td>
 
                         <td>
+
                         <?= Form::open(array('url' => 'Activity/' . $row->activities_id,
-                        'method' => 'delete')) ?>
-                        <button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบอัลบัม</button>
-                        {!! Form::close() !!}
+                        'method' => 'delete')) ?> 
+                        <td>
+                        <button href="#delete{{$row->activities_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบข้อมูลกิจกรรม?')" ><b  class="font1">ลบอัลบัม</b></button>
                         </td>
+                         {!! Form::close() !!}
+
+
                       </tr>
                       @endforeach
                     </tbody>
             </table>
+            </div>
 
 
             <br>
             <br>
             <br>
-            <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <div align="center">
                             {{ $activities->links() }}

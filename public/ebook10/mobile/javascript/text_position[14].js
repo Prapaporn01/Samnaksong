@@ -1,0 +1,1 @@
+﻿positionForPages[14]={page:14,positions:[{word:"1",left:0.197618,top:0.198309,width:0.077058,height:0.078176},{word:"เสริมพลังงา",left:0.203782,top:0.417631,width:0.504215,height:0.071946},{word:"ความสำเรจ",left:0.199690,top:0.586296,width:0.595960,height:0.087714},{word:"www.kalyanamitra.org",left:0.351097,top:0.968315,width:0.297760,height:0.029092}]};

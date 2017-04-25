@@ -1,0 +1,1 @@
+﻿positionForPages[1]={page:1,positions:[{word:"พระอาจารย์ชานนท์ ชยนนฺโท",left:0.076581,top:0.109564,width:0.368007,height:0.041498},{word:"กลับ",left:0.069887,top:0.447892,width:0.340244,height:0.187030},{word:"บ้าน",left:0.069887,top:0.556666,width:0.341723,height:0.210410},{word:"พาจิต",left:0.076581,top:0.388821,width:0.256579,height:0.119601}]};

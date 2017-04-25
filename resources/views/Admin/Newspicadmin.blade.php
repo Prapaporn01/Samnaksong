@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -17,16 +24,21 @@
 }
 
 </style>
+      <div class="col-md-9" style="margin-top: 5px;margin-bottom: 5px;"> 
+            <?php if(empty($news_pic)){ ?> 
+              <a href="{{ url ('/News') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>   
+              <a href="{{url('Subpicnews/'.$empty.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-bottom:5px; margin-top:5px;'>เพิ่มรูปภาพในอัลบัม</a>
+            <?php }?>
 
-<body>
-
-        <div class="col-md-9">
-        <br>
+            <?php if(!empty($news_pic)){ ?>
+              <a href="{{ url ('/News') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>
+              <div><a href="{{url('Subpicnews/'.$news_pic[0]->news_id.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-top:5px;margin-bottom:5px; '>เพิ่มรูปภาพในอัลบัม</a>
+              </div>
 
             <table class="table table-striped table-bordered ">
                     <thead  >
                       <tr >
-                        <th width="30%">รูปสิ่งสำคัญภายในสำนักสงฆ์</th>
+                        <th width="30%">รูปประกอบข่าวประชาสัมพันธ์</th>
                         <th width="5%"></th>
                       </tr>
                     </thead>
@@ -38,13 +50,16 @@
                                                
                             <img src='../images/resize/<?php echo $row->news_file_pic; ?>'>
                         </td>
-                            <td>
-                        <?= Form::open(array('url' => 'Newspic/' . $row->news_pic_id,
-                        'method' => 'delete')) ?>
-                        <button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบ</button>
-                        {!! Form::close() !!}
-                      </td> 
-                       
+
+
+
+                       <?= Form::open(array('url' => 'Newspic/' . $row->news_pic_id,
+                        'method' => 'delete')) ?> 
+                        <td>
+                        <button href="#delete{{$row->news_pic_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบรูปภาพข่าวประชาสัมพันธ์?')" >ลบ</button>
+                        </td>
+
+                       {!! Form::close() !!}                     
 
                                         
                       </tr>
@@ -59,11 +74,6 @@
                         </div>  
                     </div>
                 </div>
-        </div>
-
-   
-
-</body>
-
-</html>
+                <?php }?>
+      </div>
 @stop

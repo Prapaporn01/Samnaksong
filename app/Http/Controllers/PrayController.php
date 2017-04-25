@@ -16,7 +16,7 @@ class PrayController extends Controller
      */
     public function index()
     {
-        $item= Pray::orderBy('pray_id', 'desc')->paginate(5);
+        $item= Pray::orderBy('pray_id', 'desc')->paginate(10);
         return view('Admin.PrayAdmin',['Pray'=>$item]);
     }
 
@@ -99,7 +99,7 @@ class PrayController extends Controller
         $pray = Pray::find($id);
         $pray->pray_title = $request->pray_title;
         
-        $pray->pray_detail = $request->pray_detail;  
+    
             if ($request->hasFile('pray_detail')) 
             {                
             $filename = "Pray_".str_random(10) . '.' .$request->file('pray_detail')->getClientOriginalExtension();
@@ -113,8 +113,10 @@ class PrayController extends Controller
             $pray->pray_sound= $request->file('pray_sound')->move(public_path() . '/audio/', $filename);
             $pray->pray_sound = $filename;
             }
+
         $pray->save();
-        $pray->update($request->all()); //mass asignment , define $fillable(model)
+       
+
         return redirect()->action('PrayController@index');
     }
 
@@ -136,15 +138,26 @@ class PrayController extends Controller
 
     public function deletepray($id)
     {
-        $pray= Pray::find($id);
-            File::delete(public_path() . '\\audio\\' . $pray->pray_sound);
-            File::delete(public_path() . '\\pdf\\' . $pray->pray_detail);
-        $pray->pray_sound  = null;
-        $pray->pray_detail  = null;
-        $pray->save();
 
+        $pray= Pray::find($id);
+            File::delete(public_path() . '\\pdf\\' . $pray->pray_detail);
+        $pray->pray_detail  = null;
+
+        $pray->save();
         return redirect()->action('PrayController@edit', ['id' => $id]);
     }
+
+     public function deletesound($id)
+    {
+
+        $pray= Pray::find($id);
+            File::delete(public_path() . '\\audio\\' . $pray->pray_sound);
+        $pray->pray_sound  = null;
+
+        $pray->save();
+        return redirect()->action('PrayController@edit', ['id' => $id]);
+    }
+
 }
 
 

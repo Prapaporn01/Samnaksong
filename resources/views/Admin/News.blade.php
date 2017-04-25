@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <head>

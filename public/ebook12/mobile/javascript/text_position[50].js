@@ -1,0 +1,1 @@
+﻿positionForPages[50]={page:50,positions:[{word:"รรมฐาน",left:0.646825,top:0.264367,width:0.256101,height:0.053881},{word:"m",left:0.521977,top:0.652777,width:0.036211,height:0.014216},{word:"4r",left:0.420064,top:0.928519,width:0.102001,height:0.045642},{word:"www.kalyanamitra.org",left:0.359591,top:0.970797,width:0.280775,height:0.025988}]};

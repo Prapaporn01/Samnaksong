@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsReguest extends FormRequest
+class NewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,19 @@ class NewsReguest extends FormRequest
     public function rules()
     {
     return [
-    'news_name' => 'required',
-    'news_detail' => 'required',
-    'newsmain_pic' => 'required|mimes:jpeg,png',
+    'news_title' => 'required',
     'news_description' => 'required',
+    'newsmain_pic' => 'required|mimes:jpeg,png',
+   
     ];
     }
 
 
     public function messages() {
     return [
-    'news_name.required' => 'กรุณากรอกหัวข้อข่าว',
-    'news_detail.required' => 'กรุณากรอกรายละเอียดข่าว',
+    'news_title.required' => 'กรุณากรอกหัวข้อข่าว',
     'news_description.required' => 'กรุณากรอกคคำอธิบาย',
-    'newsmain_pic.required' => 'กรุณาเลือกไฟล์',
+    'newsmain_pic.required' => 'กรุณาเลือกไฟล์ภาพรูปปก',
     'newsmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
     }
 }

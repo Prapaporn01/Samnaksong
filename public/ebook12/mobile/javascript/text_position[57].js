@@ -1,0 +1,1 @@
+﻿positionForPages[57]={page:57,positions:[{word:"เปีดพรมแดนโลกแหงธรรม",left:0.105987,top:0.027773,width:0.345000,height:0.024265},{word:"www.kalyanamitra.org",left:0.359591,top:0.970837,width:0.280775,height:0.025952}]};

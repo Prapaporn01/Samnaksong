@@ -27,15 +27,19 @@ class WorshipRequest extends FormRequest
     'worship_name' => 'required',
     'worship_detail' => 'required',
     'worshipmain_pic'=>'required|mimes:jpeg,jpg,png',
+    'files.*' => 'required|mimes:jpeg,jpg,png',
+
     ];
     }
 
 
     public function messages() {
     return [
-    'worship_name.required' => 'กรุณากรอกชื่อ',
-    'worship_detail.required' => 'กรุณากรอกณายละเอียด',
-    'worshipmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพ',
-    'worshipmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,jpg,png'];
+    'worship_name.required' => 'กรุณากรอกชื่อเครื่องสักการะบูชา',
+    'worship_detail.required' => 'กรุณากรอกรายละเอียดเครื่องสักการะบูชา',
+    'worshipmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพรูปปก',
+    'worshipmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพรูปปกนามสกุล jpeg,png',
+    'files.*.required'=> 'กรุณาเลือกไฟล์รูปภาพ',
+    'files.*.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
     }
 }

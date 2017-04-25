@@ -25,18 +25,18 @@ class PrayRequest extends FormRequest
     {
     return [
     'pray_title' => 'required',
-    'pray_detail' => 'required|mimes:pdf',
-    'pray_sound' => 'required|mimes:mpga',
+    // 'pray_detail' => 'required|mimes:pdf',
+    // 'pray_sound' => 'required|mimes:mpga',
     ];
     }
 
 
     public function messages() {
     return [
-    'pray_title.required' => 'กรุณากรอกชื่อบทสวดมนต์',
+    'pray_title.required' => 'กรุณากรอกชื่อบทสวดมนต์'/*,
     'pray_detail.required' => 'กรุณาใส่ไฟล์บทสวดมนต์',
     'pray_detail.mimes' => 'กรุณาใส่ไฟล์บทสวดมนต์ สกุล .pdf',
     'pray_sound.required' => 'กรุณาใส่ไฟล์เสียง',
-    'pray_sound.mimes' => 'กรุณาใส่ไฟล์เสียง สกุล mp3'];
+    'pray_sound.mimes' => 'กรุณาใส่ไฟล์เสียง สกุล mp3'*/];
     }
 }

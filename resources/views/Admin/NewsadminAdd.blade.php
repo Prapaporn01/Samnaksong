@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -56,105 +63,106 @@ label.control-label {
 <body>
 
             <div class="col-md-9 col-xs-12">
+            <br>
             <div class='panel panel-default dialog-panel' ">
-      <div class='panel-heading'>
-        <h5>จัดการข่าวประชาสัมพันธ์</h5>
-      </div>
-      <div class='panel-body'>
-
-                @if (count($errors) > 0)
-                    <div class="alert alert-warning">
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                    </div>
-                @endif                     
-
-
-      {!! Form::open(array('url' => 'News','files' => true)) !!} 
-
-                        <div class='form-group'>
-                            <div class='col-md-10 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-3'>รูปปก</label>
-                                <div class='col-md-9 col-xs-6'>
-                                                                  
-                                       <?= Form::file('newsmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
-                                </div>
-                            </div>
-                        </div>
-
-                  <div class='form-group'>               
-                        <div class='col-md-10 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-3'>หัวข้อข่าว</label>
-                                <div class='col-md-9 col-xs-6'>
-                                <?= Form::text('news_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
-                                 
-                                </div>         
-                        </div>
-                  </div>
-                  
-                  <div class='form-group'>
-                    <div class='col-md-10 col-xs-12'>
-                    <label class='control-label col-md-3 col-xs-3'>คำอธิบาย</label>
-                    <div class='col-md-9 col-xs-6'>
-                    <?= Form::text('news_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
-                      
-                    </div>
-                    </div>
-                  </div>
-          
-                 
-                  <div class='form-group'>
-                    <div class='col-md-10 col-xs-12'>
-                    <label class='control-label col-md-3 col-xs-3'>รายละเอียดข่าว</label>
-                    <div class='col-md-9 col-xs-6'>
-                    <?= Form::textarea('news_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
-                      
-                    </div>
-                    </div>
-                  </div>
-
-
-                              
-                   <div class='form-group'>
-                      <div class='col-md-10 col-xs-12'>
-                      <label class='control-label col-md-3 col-xs-3'>รูปภาพ</label>
-                        <div class='col-md-9 col-xs-6'>
-                              <input type="file" name="files[]" id="filer_input"  multiple="multiple" >
-                             <!--  <input type="submit" value="Submit"> -->
-                            
-                        </div>
+                      <div class='panel-heading'>
+                        <h3>จัดการข่าวประชาสัมพันธ์</h3>
                       </div>
-                  </div>
+                      <div class='panel-body'>
+
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                    <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                    </ul>
+                                    </div>
+                                @endif                     
 
 
+                                {!! Form::open(array('url' => 'News','files' => true)) !!}
+                                @if(Session::has('flash_message'))           
+                                  <div class="alert alert-danger">
+                                    {{Session::get('flash_message')}}
+                                  </div> 
+                                @endif  
 
-<!-- <script src="./js/jquery.filer.min.js">
-    $(document).ready(function() {
-    $("#file_input").filer(function(default_options){
-    showThumbs: true,
-    return Obj;});
-  }
-</script> -->
+                                        <div class='form-group'>
+                                            <div class='col-md-10 col-xs-12'>
+                                                <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มรูปปก :</b></h5></label>
+                                                <div class='col-md-9 col-xs-6'>
+                                                                                  
+                                                       <?= Form::file('newsmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class='form-group'>               
+                                              <div class='col-md-10 col-xs-12'>
+                                                      <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มหัวข้อข่าว :</b></h5></label>
+                                                      <div class='col-md-9 col-xs-12'>
+                                                      <?= Form::text('news_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                                       
+                                                      </div>         
+                                              </div>
+                                        </div>
+                                  
+                                        <div class='form-group'>
+                                          <div class='col-md-10 col-xs-12'>
+                                          <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มคำอธิบาย :</b></h5></label>
+                                          <div class='col-md-9 col-xs-12'>
+                                          <?= Form::text('news_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                            
+                                          </div>
+                                          </div>
+                                        </div>
 
-
-
-                         <div class='form-group'>
-                            <div class='col-md-12 col-xs-12'>
-                              <button class='btn-lg btn-default' style='float:right;' type='submit'>Save</button>
-                            </div>
+                                        <div class='form-group'>
+                                          <div class='col-md-10 col-xs-12'>
+                                          <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มรายละเอียด :</b></h5></label>
+                                          <div class='col-md-9 col-xs-12'>
+                                          <?= Form::text('news_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                            
+                                          </div>
+                                          </div>
+                                        </div>
                           
-                        </div>
-                    
-                  </div>
-                {!! Form::close() !!}
+                                
+
+                                        <div class='form-group'>
+                                          <div class='col-md-10 col-xs-12'>
+                                          <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มไฟล์เอกสาร :</b></h5></label>
+                                            <div class='col-md-9 col-xs-12' style="margin-top:10px;">
+                                                  <?= Form::file('news_file', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
+                                                
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+
+                                        <div class='form-group'>
+                                          <div class='col-md-10 col-xs-12'>
+                                          <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มรูปภาพ :</b></h5></label>
+                                            <div class='col-md-9 col-xs-12' style="margin-top:10px;">
+                                                  <input type="file" name="files[]" id="filer_input"  multiple="multiple" >                                           
+                                            </div>
+                                          </div>
+                                        </div>
 
 
-      </div>
-    </div>
+                                        <div class='form-group'>
+                                            <div class='col-md-12 col-xs-12'>
+                                              <button class='btn-lg btn-default' style='float:right;' type='submit'>Save</button>
+                                            </div>
+                                          
+                                        </div>
+                                    
+                                 {!! Form::close() !!} 
+                      </div>
+                                
+                </div>
+              </div>
 
 </body>
 

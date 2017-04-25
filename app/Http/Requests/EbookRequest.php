@@ -25,7 +25,7 @@ class EbookRequest extends FormRequest
     {
     return [
     'ebook_name' => 'required',
-    'ebook_file' => 'required|mimes:pdf',
+    'ebook_file' => 'required|mimes:swf',
 
     ];
     }
@@ -35,7 +35,7 @@ class EbookRequest extends FormRequest
     return [
     'ebook_name.required' => 'กรุณากรอกชื่อ',
     'ebook_file.required' => 'กรุณาเลือกไฟล์',
-    'ebook_file.mimes' => 'กรุณาเลือกไฟล์ สกุล .pdf'
+    'ebook_file.mimes' => 'กรุณาเลือกไฟล์ สกุล .swf'
 ];
     }
 }

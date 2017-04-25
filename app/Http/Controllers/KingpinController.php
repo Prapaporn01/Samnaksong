@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\KingpinRequest;
 use App\Kingpin;
 use App\Kingpinpic;
+use App\Kingpintype;
 use Image;
 use File;
-
+use Session;
 
 class KingpinController extends Controller
 {
@@ -20,7 +21,7 @@ class KingpinController extends Controller
      */
     public function index()
     {
-        $item= Kingpin::orderBy('kingpin_id', 'desc')->paginate(3);
+        $item= Kingpin::orderBy('kingpin_id', 'desc')->paginate(5);
         return view('Admin.Kingpinadmin',['Kingpin_state'=>$item]);
     }
 
@@ -31,7 +32,8 @@ class KingpinController extends Controller
      */
     public function create()
     {
-        return view('Admin.KingpinadminAdd');
+        $type= Kingpintype::all();
+        return view('Admin.KingpinadminAdd',['type'=>$type]);
     }
 
     /**
@@ -42,10 +44,22 @@ class KingpinController extends Controller
      */
     public function store(KingpinRequest $request)
     {
+
+            if ($request->hasFile('files')) {
+             $count = count($request->file('files'));
+
+            if ($count>=25) {
+          
+                Session::flash('flash_message','อัพโหลดรูปในอัลบัมได้ไม่เกิน 25 รูปเท่านั้น!!!');
+                return redirect()->back();
+            }
+        }
+
+
         $kingpin= new Kingpin();
         $kingpin->kingpin_name= $request->kingpin_name;
         $kingpin->kingpin_detail=$request->kingpin_detail;
-        $kingpin->kingpin_type=$request->kingpin_type;
+        $kingpin->kingpintype_id=$request->type;
 
         $kingpin->kingpinmain_pic=$request->kingpinmain_pic;
          if ($request->hasFile('kingpinmain_pic')) {
@@ -55,21 +69,19 @@ class KingpinController extends Controller
             $kingpin->kingpinmain_pic = $filename;
             File::delete(public_path() . '/images/' . $kingpin->kingpinmain_pic);
         }
-         $kingpin->save();
+         $kingpin->save();   
 
+         
         
-
-         $a=Kingpin::orderBy('kingpin_id', 'desc')->first();
-        
-
-        if ($request->hasFile('files')) {
-
+    
             $files = $request->file('files');
+            $a=Kingpin::orderBy('kingpin_id', 'desc')->first();
 
             foreach($files as $file){
                 $kingpinpic= new Kingpinpic();
                 $kingpinpic->kingpin_id=$a->kingpin_id;
-                $filename = "Kingpin_".str_random(10) . '.' . $file->getClientOriginalExtension();
+                $filename = "Kingpin_".str_random(10) . '.' . $file->
+                getClientOriginalExtension();
 
                 $file->move(public_path() . '/images/', $filename);
 
@@ -77,15 +89,35 @@ class KingpinController extends Controller
                         ->resize(150, 150)
                         ->save(public_path() . '/images/resize/' . $filename);
 
-
+                Image::make(public_path() . '/images/' . $filename )
+                        ->resize(650, 500)
+                        ->save(public_path() . '/images/Kingpin/' . $filename);
+                        
                 $kingpinpic->kingpin_file_pic = $filename;
                 File::delete(public_path() . '/images/' . $kingpinpic->kingpin_file_pic);
                 $kingpinpic->save();
 
-            }
         }
         return redirect()->action('KingpinController@index');
     }
+
+
+
+public function createtype(request $request)
+    {
+      
+        $kingpin= new Kingpintype();
+        $kingpin->kingpintype_name=$request->kingpintype_add;
+        $kingpin->save();
+
+
+        Session::flash('flash_message2', 'เพิ่มประเภทวัตถุมงคลสำเร็จแล้ว  จากนั้นให้ทำการเลือกประเภทวัตถุมงคล');
+        return redirect()->back();
+    }   
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -105,9 +137,13 @@ class KingpinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $kingpin = Kingpin::findOrFail($id);
-        return view('Admin.KingpinEditAdmin', ['kingpin' => $kingpin]);
+         
+        $kingpin1 = Kingpintype::pluck('kingpintype_name','kingpintype_id');
+        $kingpin2 = Kingpintype::orderBy('kingpintype_id','desc')->paginate(4);
+
+        return view('Admin.KingpinEditAdmin',['kingpin'=>$kingpin,'item'=>$kingpin1,'kingpin2'=>$kingpin2]);
     }
 
     /**
@@ -117,13 +153,14 @@ class KingpinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(KingpinRequest $request, $id)
-    { 
+    public function update(Request $request, $id)
+    {
+
         $kingpin = Kingpin::find($id);
         $kingpin->kingpin_name= $request->kingpin_name;
         $kingpin->kingpin_detail=$request->kingpin_detail;
-        $kingpin->kingpin_type=$request->kingpin_type;
-        dd($kingpin);
+        $kingpin->kingpintype_id=$request->kingpintype_id;
+        
 
         if ($request->hasFile('kingpinmain_pic')) {
 
@@ -147,7 +184,6 @@ class KingpinController extends Controller
      */
     public function destroy($id)
     {
-
         $kingpin = Kingpin::find($id);
 
             File::delete(public_path() . '\\images\\' . $kingpin->kingpinmain_pic);
@@ -160,6 +196,7 @@ class KingpinController extends Controller
     {   
         File::delete(public_path() . '\\images\\' . $kingpin_pic->kingpin_file_pic);
         File::delete(public_path() . '\\images\\resize\\' . $kingpin_pic->kingpin_file_pic);
+        File::delete(public_path() . '\\images\\Kingpin\\' . $kingpin_pic->kingpin_file_pic);
     }
 
             $kingpin->delete();
@@ -167,8 +204,7 @@ class KingpinController extends Controller
     }
 
 
-
-    public function deletepic($id)
+     public function deletepic($id)
     {
         $kingpin= Kingpin::find($id);
             File::delete(public_path() . '\\images\\' . $kingpin->kingpinmain_pic);
@@ -179,4 +215,12 @@ class KingpinController extends Controller
         return redirect()->action('KingpinController@edit', ['id' => $id]);
 
     }
+
+    public function deletetype(Request $request)
+        {
+            $kingpin= Kingpintype::find($request->id);      
+            $kingpin->delete();
+
+            return redirect()->action('KingpinController@edit', ['id' => $request->idedit]);
+        }
 }

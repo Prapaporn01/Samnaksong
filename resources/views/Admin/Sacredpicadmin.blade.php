@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -21,12 +28,19 @@
 <body>
 
         <div class="col-md-9">
-        <br>
+        <?php if(empty($sacred_pic)){ ?> 
+            <a href="{{ url ('/Sacred') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>   
+            <a href="{{url('Subpicsacred/'.$empty.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-bottom:5px; margin-top:5px;'>เพิ่มรูปภาพในอัลบัม</a>
+            <?php }?>
+
+           <?php if(!empty($sacred_pic)){ ?>
+            <a href="{{ url ('/Sacred') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>
+            <div><a href="{{url('Subpicsacred/'.$sacred_pic[0]->sacred_id.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-top:5px;margin-bottom:5px; '>เพิ่มรูปภาพในอัลบัม</a></div>
 
             <table class="table table-striped table-bordered ">
                     <thead  >
                       <tr >
-                        <th width="30%">รูปเครื่องสักการะบูชา</th>
+                        <th width="30%">รูปวัตถุมงคล</th>
                         <th width="5%"></th>
                       </tr>
                     </thead>
@@ -41,7 +55,7 @@
                             <td>
                         <?= Form::open(array('url' => 'Sacredpic/' . $row->sacred_pic_id,
                         'method' => 'delete')) ?>
-                        <button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบ</button>
+                        <button href="#delete{{$row->sacred_pic_id }}" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบรูปภาพวัตถุมงคล?')" type="submit">ลบ</button>
                         {!! Form::close() !!}
                       </td> 
                        
@@ -59,7 +73,7 @@
                         </div>  
                     </div>
                 </div>
-
+                <?php }?>
 
         </div>
 

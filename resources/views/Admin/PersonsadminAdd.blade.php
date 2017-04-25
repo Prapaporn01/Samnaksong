@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <style type="text/css">
@@ -120,7 +127,7 @@
         <div class="col-md-9 col-xs-12" >
             <div class='panel panel-default dialog-panel' >
                 <div class='panel-heading'>
-                    <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบุคคลสำคัญที่เกี่ยวข้อง</h5>
+                    <h3 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบุคคลสำคัญที่เกี่ยวข้อง</h3>
                 </div>
                 <div class='panel-body'>
                 @if (count($errors) > 0)
@@ -138,8 +145,8 @@
                     {!! Form::open(array('url' => 'Persons','files' => true)) !!}
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>ชื่อ</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มชื่อบุคคลที่เกี่ยวข้อง :</b></h5></label>
+                                <div class='col-md-6 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('person_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>    
                                     </div>
@@ -150,8 +157,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>รายละเอียดบุคคลสำคัญที่เกี่ยวข้อง</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-6 col-xs-12'><h5><b>เพิ่มรายละเอียดบุคคลสำคัญที่เกี่ยวข้อง :</b></h5></label>
+                                <div class='col-md-10 col-xs-12'>
                                     <?= Form::textarea('person_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 3px']); ?>
                                     
                                 </div>
@@ -160,9 +167,9 @@
 
 
                         <div class='form-group'>
-                            <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>รูปปก</label>
-                                <div class='col-md-8 col-xs-4'>
+                            <div class='col-md-11 col-xs-12' >
+                                <label class='control-label col-md-4 col-xs-12' ><h5><b>เพิ่มรูปปก :</b></h5></label>
+                                <div class='col-md-8 col-xs-12' style="margin-top:5px;">
                                        
                                         <?= Form::file('person_file_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
                                 </div>

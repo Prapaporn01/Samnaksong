@@ -1,0 +1,1 @@
+﻿positionForPages[101]={page:101,positions:[{word:"พ® ",left:0.773962,top:0.048951,width:0.225084,height:0.071644},{word:",",left:0.970120,top:0.049620,width:0.037788,height:0.050741},{word:"(รL",left:0.907717,top:0.111973,width:0.092965,height:0.045304},{word:"www.kalyanamitra.org",left:0.359735,top:0.970877,width:0.280487,height:0.025917}]};

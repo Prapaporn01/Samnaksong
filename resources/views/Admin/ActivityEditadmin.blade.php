@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <head>
@@ -60,79 +67,77 @@ label.control-label {
 <body>
 
             <div class="col-md-9 col-xs-12">
-
+            <br>
             <div class='panel panel-default dialog-panel' ">
-      <div class='panel-heading'>
-        <h5>จัดการรูปภาพกิจกรรม</h5>
-      </div>
-      <div class='panel-body'>
+                <div class='panel-heading'><h3>จัดการกิจกรรม</h3></div>
+                  <div class='panel-body'>
 
- <?= Form::model($activity, array('url' => 'Kingpin/' . $activity->activities_id,'method' => 'put','files'=>true)) ?>
-                
-                  <div class='form-group'>
-                    <div class='col-md-10 col-xs-12'>
-                        <label class='control-label col-md-4 col-xs-3'>รูปปก</label>
-                          <div class='col-md-6 col-xs-6'>
-                            <?= Form::file('activitiesmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
-                          </div>
-                    </div>
-                </div>  
+                    <div align="center"><img src="{{ asset('images/resize/') }}/{{$activity->activitiesmain_pic}}"></div>
+                      
+                      <?= Form::model($activity, array('url' => 'Activity/' . $activity->activities_id,'method' => 'put','files'=>true)) ?>
 
-                  <div class='form-group'>               
-                        <div class='col-md-10 col-xs-12'>
-                                <label class='control-label col-md-4 col-xs-3'>ชื่อกิจกรรม</label>
-                                <div class='col-md-6 col-xs-6'>
-                                  <?= Form::text('activities_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
-                                </div>         
+                        <div class='form-group'>
+                            <div class='col-md-11 col-xs-10 '>
+                              <div class="alert alert-info" style="margin-left: 20%;">
+                                หากต้องการแก้ไขรูปภาพ ให้กดปุ่มลบรูปภาพจากนั้นทำการเลือกรูปภาพใหม่<br>หากไม่ต้องการแก้ไขรูปภาพ ให้ข้ามขั้นตอนนี้ไป
+                              </div>
+                            </div>
                         </div>
-                  </div>
                 
-          
-                 
-                  <div class='form-group'>
-                    <div class='col-md-10 col-xs-12'>
-                    <label class='control-label col-md-4 col-xs-3'>รายละเอียดกิจกรรม</label>
-                    <div class='col-md-8 col-xs-6'>
-                      <?= Form::textarea('activities_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
-                    </div>
-                    </div>
+                        <div class='form-group'>
+                            <div class='col-md-10 col-xs-12' style="margin-bottom: 5px;">
+                                <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขรูปปก : </b></h5></label>
+
+                                  <div class='col-md-3 col-xs-12'>    
+                                    <button><a href="{{url('Activitypicdelete/'.$activity->activities_id)}}" style="color:black;">ลบรูปภาพ</a></button>        
+                                  </div>
+
+                                  <div class='col-md-4 col-xs-12'>
+                                    <?= Form::file('activitiesmain_pic', null, ['class' => 'formcontrol'])  ?>
+                                  </div>
+                            </div>
+                        </div>  
+
+
+                        <div class='form-group'>               
+                              <div class='col-md-10 col-xs-12'>
+                                      <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขชื่อกิจกรรม : </b></h5></label>
+                                      <div class='col-md-6 col-xs-12'>
+                                        <?= Form::text('activities_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                      </div>         
+                              </div>
+                        </div>
+                
+                        <div class='form-group'>
+                            <div class='col-md-10 col-xs-12'>
+                                <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขคำอธิบาย :</b></h5></label>
+                                <div class='col-md-6 col-xs-12'>
+                                  <?= Form::text('activity_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>              
+                                </div>
+                            </div>
+                        </div>         
+  
+                        <div class='form-group'>
+                          <div class='col-md-10 col-xs-12'>
+                          <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขรายละเอียด : </b></h5></label>
+                          <div class='col-md-8 col-xs-12'>
+                            <?= Form::textarea('activities_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
+                          </div>
+                          </div>
+                        </div>
+
+                      
+                        <div class='form-group'>
+                        <div class='col-md-12 col-xs-12'>
+                          <button class='btn-lg btn-default' style='float:right;' type='submit'>Save</button>
+                        </div>
+                        
+                        </div>
+
+                      {!! Form::close() !!}
                   </div>
-
-
-                  <div class='form-group'>
-                    <div class='col-md-10 col-xs-12 '>
-                    <label class='control-label col-md-4 col-xs-3'>วันที่อัพเโหลดรูปภาพ</label>
-                      <div class='col-md-6 col-xs-6'>
-                      <!-- <form action="action_page.php">  -->
-                            <input type="date" name="activities_date">
-                            
-                      <!-- </form> -->
-                      </div>
-                    </div>
-                  </div>
-                              
-                   <div class='form-group'>
-                    <div class='col-md-10 col-xs-12'>
-                    <label class='control-label col-md-4 col-xs-3'>รูปภาพ</label>
-                    <div class='col-md-6 col-xs-6'>
-                          <input type="file" name="files[]" id="filer_input" multiple="multiple" >
-                    </div>
-                    </div>
-                  </div>
-
-
-                  <div class='form-group'>
-                    <div class='col-md-12 col-xs-12'>
-                      <button class='btn-lg btn-default' style='float:right;' type='submit'>Save</button>
-                    </div>
-                    
-                  </div>
-
-        {!! Form::close() !!}
-
-
-      </div>
-    </div>
+            </div>
+            </div>
 
 </body>
 

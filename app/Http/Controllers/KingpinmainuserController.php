@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\KingpinMainUser;
+use Illuminate\Support\Facades\DB;
+use App\Kingpin;
+use App\Kingpinpic;
 
 class KingpinmainuserController extends Controller
 {
@@ -13,8 +15,9 @@ class KingpinmainuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $item= KingpinMainUser::paginate(9);
+    {   
+        $item= Kingpin::orderBy('kingpin_id', 'desc')->paginate(9);
+
         return view('User.KingpinMainUser',['kingpin_state'=>$item]);
     }
 
@@ -47,7 +50,16 @@ class KingpinmainuserController extends Controller
      */
     public function show($id)
     {
-        //
+        $item=DB::table('kingpin_pic')->Join('kingpin_state','kingpin_pic.kingpin_id','=','kingpin_state.kingpin_id')       
+            ->select('kingpin_state.*','kingpin_pic.kingpin_file_pic')->where('kingpin_state.kingpin_id',$id)
+            ->paginate(9);
+
+        $item2=DB::table('kingpin_pic')->Join('kingpin_state','kingpin_pic.kingpin_id','=','kingpin_state.kingpin_id')       
+            ->select('kingpin_state.*','kingpin_pic.kingpin_file_pic')->where('kingpin_state.kingpin_id',$id)
+            ->get();
+
+          
+        return view('User.KingpinUser',['kingpin_state'=>$item,'kingpin_state2'=>$item2]);
     }
 
     /**

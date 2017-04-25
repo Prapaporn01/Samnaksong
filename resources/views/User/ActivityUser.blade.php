@@ -1,14 +1,90 @@
-@extends('site.layoutuser')
+@extends('site.layoutforuser')
 @section('menutop')
+<style type="text/css">
+    .breadcrumb {
+    padding: 0px;
+    background: #D4D4D4;
+    list-style: none; 
+    overflow: hidden;
+    margin-top: 0px;
+}
+.breadcrumb>li+li:before {
+    padding: 0;
+}
+.breadcrumb li { 
+    float: left; 
+}
+.breadcrumb li.active a {
+    background: brown;                   /* fallback color */
+    background: #cc9966 ; 
+}
+.breadcrumb li.completed a {
+    background: brown;                   /* fallback color */
+    background: hsla(153, 57%, 51%, 1); 
+}
+.breadcrumb li.active a:after {
+    border-left: 30px solid #cc9966 ;
+}
+.breadcrumb li.completed a:after {
+    border-left: 30px solid hsla(153, 57%, 51%, 1);
+} 
+
+.breadcrumb li a {
+    color: #080808;
+    text-decoration: none; 
+    padding: 10px 0 10px 45px;
+    position: relative; 
+    display: block;
+    float: left;
+}
+.breadcrumb li a:after { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid hsla(0, 0%, 83%, 1);
+    position: absolute;
+    top: 50%;
+    margin-top: -50px; 
+    left: 100%;
+    z-index: 2; 
+}   
+.breadcrumb li a:before { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px; 
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1; 
+}   
+.breadcrumb li:first-child a {
+    padding-left: 15px;
+}
+.breadcrumb li a:hover { background: #cc9966  ; }
+.breadcrumb li a:hover:after { border-left-color: #cc9966   !important; }
+</style>
 <body>
-            <div class="col-md-11 col-xs-11" >
-                <ul class="breadcrumb" style="padding-top: 8px;margin-bottom: 0px;margin-left: 150px;margin-right: 25px;">
-                    <li><a href="{{ url('/')}}">กลับสู่หน้าหลัก</a></li>
-                    <li><a href="{{ url('/ActivityMainUser')}}">รูปภาพกิจกรรม</a></li>
-                    <li class="active">สงกรานต์ ประจำปี 2559</li>
-                </ul>
-            </div>
-            
+          @foreach($activities as $title)
+            @if ($loop->first)
+          <div class="container">
+                  <ul class="breadcrumb">
+                      <li><a href="{{ url('/')}}" style="font-size:18px;"><fontTh>กลับสู่หน้าหลัก</fontTh></a></li>
+                      <li><a href="{{ url('/ActivityMainUser')}}" style="font-size:18px;"><fontTh>รูปภาพกิจกรรม</fontTh></a></li>
+                      <li class="active"><a href="javascript:void(0);" style="font-size:18px;"><fontTh>{{$title->activities_name}}</fontTh></a></li>
+                  </ul>          
+          </div>
+            @endif
+          @endforeach
+
 </body>
 @stop
 
@@ -20,18 +96,7 @@
 @section('content')
 <head>
     <title>ActivityUser</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville|Trirong' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/design.css" type="text/css" />
-    <script src="js/photo-gallery.js"></script>
-
-
+    
 </head>
 
   <style>
@@ -84,104 +149,66 @@
               display:none;
           }
       }
-
-      body{
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    background-image: url(images/bg1.jpg);
-}
 </style>
 
 
 <body>
 
 
-            <div class="col-md-12">
+            <div class="col-md-12 col-xs-12">
                     <br>
                     <br>
-                <div align="right"><font color="black"><fontTh>อัพเดทวันที่ :</fontTh><fontEng> 2016-12-16</fontEng></font></div>
+                @foreach($activities as $info)
+                    @if ($loop->first)
+                <div align="right"><font color="black"><fontTh>อัพเดทวันที่ :</fontTh><fontEng> {{ Carbon\Carbon::parse($info->activities_date)->format('d-m-Y ') }}</fontEng></font></div>
+                    
                     <br>
                     <br>
                     <br>
-                    <center style="color:black; font-size:18px;"><b><fontTh>สงกรานต์ ประจำปี 2559</fontTh></b></center>
+                    
+                    <center style="color:#330033; font-size:24px;"><b><fontTh>{{$info->activities_name}}</fontTh></b></center>
                     <br>
-                    <center style="color:black; font-size:14px;"><fontTh>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องในวันดี พิธีสรงน้ำพระ ประจำปี 2559 ขอให้พุธศาสนิกชนทุกท่านจงมีแต่ความสุขความเจริญ ร่มเย็นตลอดไปด้วยเทอญ</fontTh></center>
+                    <div style="color:black; font-size:18px;"><fontTh>{{$info->activities_detail}}</fontTh></div
+                  @endif
+                @endforeach 
                     <br>
                     <br>
 
 
+                @foreach($activities as $row)
 
-                <ul class="row">
-                <div>
-                    <li class=" col-xs-4">
-                        <img class="img-responsive" src="images/photodune-174908-rocking-the-night-away-xs.jpg">
+                 <div >
+                  <ul>
+                    <li class=" col-sm-4 ">
+                        <img class="img-responsive" src="{{asset('images/resizeBig/'.$row->activities_file_pic)}}" style="margin-bottom:10px;">
                     </li>
-                    <li class=" col-xs-4">
-                        <img class="img-responsive" src="images/photodune-287182-blah-blah-blah-yellow-road-sign-xs.jpg">
-                    </li>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-460760-colors-xs.jpg">
-                    <br>
-                    </li>
+                  </ul>
                 </div>
+
+                @endforeach
                             
-                <div>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-461673-retro-party-xs.jpg">
-                    </li>
-                    <li class=" col-xs-4">
-                        <img class="img-responsive" src="images/photodune-514834-touchscreen-technology-xs.jpg">
-                    </li>
-                    <li class=" col-xs-4">
-                        <img class="img-responsive" src="images/photodune-916206-legal-xs.jpg">
-                    <br>
-                    </li>
-         
-                </div>
-
-                <div>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-1062948-nature-xs.jpg">
-                    </li>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-1471528-insant-camera-kid-xs.jpg">
-                    </li>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-2255072-relaxed-man-xs.jpg">
-                    <br>
-                    </li>
-                    
-                </div>
-
-                <div>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-2360379-colors-xs.jpg">
-                    </li>
-                    <li class="col-xs-4">
-                        <img class="img-responsive" src="images/photodune-2360571-jump-xs.jpg">
-                    </li>
-                    <li class=" col-xs-4">
-                        <img class="img-responsive" src="images/photodune-2361384-culture-for-business-xs.jpg">
-                    <br>
-                    </li>
-                    
-                </div>
-                </ul>
+                
          
              
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">         
-                  <div class="modal-body">                
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">         
+                      <div class="modal-body">                
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
 
 
-        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div align="center">
+                             {{ $activities->links() }}
+                        </div>  
+                    </div>
+                </div>
+
+            </div>
 
 
 
@@ -200,7 +227,6 @@
   })();
 
 </script>
-            </div>
                     
 </body>
 

@@ -10,6 +10,8 @@ use App\Newspic;
 use carbon\carbon;
 use Image;
 use File;
+use Session;
+
 
 class NewsController extends Controller
 {
@@ -21,7 +23,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $item= News::orderBy('news_id', 'desc')->paginate(3);
+        $item= News::orderBy('news_id', 'desc')->paginate(4);
         return view('Admin.Newsadmin',['News'=>$item]);
     }
 
@@ -41,15 +43,25 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
      
+        if ($request->hasFile('files')) {
+             $count = count($request->file('files'));
+
+            if ($count>=25) {
+          
+                Session::flash('flash_message','อัพโหลดรูปในอัลบัมได้ไม่เกิน 25 รูปเท่านั้น!!!');
+                return redirect()->back();
+            }
+        }
+
         $news= new News();
         $news->news_title=$request->news_title;
-        $news->news_detail=$request->news_detail;
         $news->news_description=$request->news_description;
-        $news->news_datetime=carbon::now();
-
+        $news->news_detail=$request->news_detail;
+        $news->news_datetime= carbon::now();
+        
         $news->newsmain_pic=$request->newsmain_pic;
         if ($request->hasFile('newsmain_pic')) {// hasFile + variable name of image
             // $filename = str_random(10) . '.' . $request->file('place_pic')->getClientOriginalExtension();
@@ -59,16 +71,21 @@ class NewsController extends Controller
             $news->newsmain_pic = $filename;
             File::delete(public_path() . '/images/' . $news->newsmain_pic);
         }
+
+        $news->news_file=$request->news_file;
+        if ($request->hasFile('news_file')){                
+            $filename = "Newsfile_".str_random(10) . '.' .$request->file('news_file')->getClientOriginalExtension();
+            $news->news_file= $request->file('news_file')->move(public_path() . '/pdf/', $filename);
+            $news->news_file = $filename;
+        }
          $news->save();
 
 
-        $a=News::orderBy('news_id', 'desc')->first();
-        
-
-        if ($request->hasFile('files')) {
-
             $files = $request->file('files');
+            $a=News::orderBy('news_id', 'desc')->first();
 
+
+        if ($request->hasFile('files')){      
             foreach($files as $file){
                 $newspic= new Newspic();
                 $newspic->news_id=$a->news_id;
@@ -80,13 +97,16 @@ class NewsController extends Controller
                         ->resize(150, 150)
                         ->save(public_path() . '/images/resize/' . $filename);
 
+                Image::make(public_path() . '/images/' . $filename )
+                        ->resize(650, 500)
+                        ->save(public_path() . '/images/News/' . $filename);
+
                 $newspic->news_file_pic = $filename;
                 File::delete(public_path() . '/images/' . $newspic->news_file_pic);
                 $newspic->save();
 
             }
         }
-
         return redirect()->action('NewsController@index');
     }
 
@@ -121,13 +141,15 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(NewsRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $news = News::find($id);
         $news->news_title= $request->news_title;
-        $news->news_detail=$request->news_detail;
         $news->news_description=$request->news_description;
-        $news->news_datetime=$request->news_datetime;
+        $news->news_detail=$request->news_detail;
+
+        $news->news_datetime=carbon::now();
+
 
         if ($request->hasFile('newsmain_pic')) {
 
@@ -138,6 +160,14 @@ class NewsController extends Controller
             File::delete(public_path() . '/images/' . $news->newsmain_pic);
 
         }
+
+        
+        if ($request->hasFile('news_file')){                
+            $filename = "Newsfile_".str_random(10) . '.' .$request->file('news_file')->getClientOriginalExtension();
+            $news->news_file= $request->file('news_file')->move(public_path() . '/pdf/', $filename);
+            $news->news_file = $filename;
+        }
+
         $news->save();        
 
         return redirect()->action('NewsController@index');
@@ -165,6 +195,7 @@ class NewsController extends Controller
     {   
         File::delete(public_path() . '\\images\\' . $news_pic->news_file_pic);
         File::delete(public_path() . '\\images\\resize\\' . $news_pic->news_file_pic);
+        File::delete(public_path() . '\\images\\News\\' . $news_pic->news_file_pic);
     }
 
             $news->delete();
@@ -179,6 +210,16 @@ class NewsController extends Controller
             File::delete(public_path() . '\\images\\' . $news->newsmain_pic);
             File::delete(public_path() . '\\images\\resize\\' . $news->newsmain_pic);
         $news->newsmain_pic  = null;
+        $news->save();
+
+        return redirect()->action('NewsController@edit', ['id' => $id]);
+
+    }
+    public function deletefile($id)
+    {
+        $news= News::find($id);
+            File::delete(public_path() . '\\pdf\\' . $news->news_file);
+        $news->news_file  = null;
         $news->save();
 
         return redirect()->action('NewsController@edit', ['id' => $id]);

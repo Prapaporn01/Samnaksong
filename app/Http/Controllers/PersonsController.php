@@ -17,7 +17,7 @@ class PersonsController extends Controller
      */
     public function index()
     {
-        $item= Persons::orderBy('person_id', 'desc')->paginate(4);
+        $item= Persons::orderBy('person_id', 'desc')->paginate(5);
         return view('Admin.Personsadmin',['related_persons'=>$item]);
     }
 
@@ -48,11 +48,19 @@ class PersonsController extends Controller
         if ($request->hasFile('person_file_pic')) {
             $filename = "Person_".str_random(10) . '.' . $request->file('person_file_pic')->getClientOriginalExtension();
 
-            $request->file('person_file_pic')->move(public_path() . '/images/', $filename);
-            Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+            $request->file('person_file_pic')
+            ->move(public_path() . '/images/', $filename);
 
+             Image::make(public_path() . '/images/' . $filename )
+             ->resize(150,150)
+             ->save(public_path() . '/images/resize/' . $filename);
+
+              Image::make(public_path() . '/images/' . $filename )
+              ->resize(200,300)
+              ->save(public_path() . '/images/Persons/' . $filename);
+           
             $person->person_file_pic = $filename;
-            File::delete(public_path() . '/images/' . $person->person_file_pic);
+              File::delete(public_path() . '/images/' . $person->person_file_pic);
         }
         $person->save();
 
@@ -90,7 +98,7 @@ class PersonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PersonsRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $person = Persons::find($id);
         $person->person_name= $request->person_name;
@@ -102,6 +110,12 @@ class PersonsController extends Controller
             $filename = "Personmain_".str_random(10) . '.' . $request->file('person_file_pic')->getClientOriginalExtension();
             $request->file('person_file_pic')->move(public_path() . '/images/', $filename);
             Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+
+            Image::make(public_path() . '/images/' . $filename )
+            ->resize(200,300)
+            ->save(public_path() . '/images/Persons/' . $filename);
+
+
             $person->person_file_pic = $filename;
             File::delete(public_path() . '/images/' . $person->person_file_pic);
 
@@ -122,6 +136,7 @@ class PersonsController extends Controller
         $person = Persons::find($id);
             File::delete(public_path() . '\\images\\' . $person->person_file_pic);
             File::delete(public_path() . '\\images\\resize\\' . $person->person_file_pic);
+            File::delete(public_path() . '\\images\\Persons\\' . $person->person_file_pic);
            
             $person->delete();
         return redirect()->action('PersonsController@index');
@@ -134,6 +149,7 @@ class PersonsController extends Controller
         $person= Persons::find($id);
             File::delete(public_path() . '\\images\\' . $person->person_file_pic);
             File::delete(public_path() . '\\images\\resize\\' . $person->person_file_pic);
+            File::delete(public_path() . '\\images\\Persons\\' . $person->person_file_pic);
         $person->person_file_pic  = null;
         $person->save();
 

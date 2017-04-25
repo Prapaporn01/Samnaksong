@@ -1,0 +1,1 @@
+﻿positionForPages[4]={page:4,positions:[{word:"5",left:0.887587,top:0.929393,width:0.020438,height:0.034925},{word:"“เราเกิดมา     ",left:0.213552,top:0.052770,width:0.784517,height:0.174005},{word:"สร้างบารมี”",left:0.191378,top:0.156583,width:0.617260,height:0.174004}]};

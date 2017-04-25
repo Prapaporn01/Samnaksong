@@ -9,7 +9,7 @@ use App\Worship;
 use App\Worshippic;
 use Image;
 use File;
-
+use Session;
 
 class WorshipController extends Controller
 {
@@ -20,7 +20,7 @@ class WorshipController extends Controller
      */
     public function index()
     {
-        $item= Worship::orderBy('worship_id', 'desc')->paginate(3);
+        $item= Worship::orderBy('worship_id', 'desc')->paginate(4);
         return view('Admin.Worshipadmin',['Worship'=>$item]);
     }
 
@@ -42,15 +42,31 @@ class WorshipController extends Controller
      */
     public function store(WorshipRequest $request)
     {
+
+        if ($request->hasFile('files')) {
+             $count = count($request->file('files'));
+
+            if ($count>=25) {
+          
+                Session::flash('flash_message','อัพโหลดรูปในอัลบัมได้ไม่เกิน 25 รูปเท่านั้น!!!');
+                return redirect()->back();
+            }
+        }
+
+
         $worship= new Worship();
         $worship->worship_name= $request->worship_name;
         $worship->worship_detail=$request->worship_detail;
 
+
         $worship->worshipmain_pic=$request->worshipmain_pic;
          if ($request->hasFile('worshipmain_pic')) {
             $filename = "Worshipmain_".str_random(10) . '.' . $request->file('worshipmain_pic')->getClientOriginalExtension();
+
             $request->file('worshipmain_pic')->move(public_path() . '/images/', $filename);
-            Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+            Image::make(public_path() . '/images/' . $filename )
+            ->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+
             $worship->worshipmain_pic = $filename;
             File::delete(public_path() . '/images/' . $worship->worshipmain_pic);
         }
@@ -58,12 +74,9 @@ class WorshipController extends Controller
 
         
 
-         $a=Worship::orderBy('worship_id', 'desc')->first();
-        
-
-        if ($request->hasFile('files')) {
 
             $files = $request->file('files');
+            $a=Worship::orderBy('worship_id', 'desc')->first();
 
             foreach($files as $file){
                 $worshippic= new Worshippic();
@@ -76,13 +89,16 @@ class WorshipController extends Controller
                         ->resize(150, 150)
                         ->save(public_path() . '/images/resize/' . $filename);
 
+                Image::make(public_path() . '/images/' . $filename )
+                        ->resize(650, 500)
+                        ->save(public_path() . '/images/Worship/' . $filename);
 
                 $worshippic->worship_file_pic = $filename;
                 File::delete(public_path() . '/images/' . $worshippic->worship_file_pic);
                 $worshippic->save();
 
             }
-        }
+
         return redirect()->action('WorshipController@index');
     }
 
@@ -116,10 +132,10 @@ class WorshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(WorshipRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        
         $worship = Worship::find($id);
+
         $worship->worship_name= $request->worship_name;
         $worship->worship_detail=$request->worship_detail;
 
@@ -129,7 +145,8 @@ class WorshipController extends Controller
 
           $filename = "Worshipmain_".str_random(10) . '.' . $request->file('worshipmain_pic')->getClientOriginalExtension();
             $request->file('worshipmain_pic')->move(public_path() . '/images/', $filename);
-            Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+            Image::make(public_path() . '/images/' . $filename )
+            ->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
             $worship->worshipmain_pic = $filename;
             File::delete(public_path() . '/images/' . $worship->worshipmain_pic);
 
@@ -137,7 +154,6 @@ class WorshipController extends Controller
         $worship->save();        
 
         return redirect()->action('WorshipController@index');
-
 
     }
 
@@ -164,6 +180,7 @@ class WorshipController extends Controller
     {   
         File::delete(public_path() . '\\images\\' . $worship_pic->worship_file_pic);
         File::delete(public_path() . '\\images\\resize\\' . $worship_pic->worship_file_pic);
+        File::delete(public_path() . '\\images\\Worship\\' . $worship_pic->worship_file_pic);
     }
 
             $worship->delete();

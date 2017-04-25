@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <style type="text/css">
@@ -115,6 +122,7 @@
     a{
         font-size: 14px;
     }
+
 </style>
 
 <body>
@@ -123,7 +131,7 @@
         <div class="col-md-9 col-xs-12" >
             <div class='panel panel-default dialog-panel' >
                 <div class='panel-heading'>
-                    <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการสถานที่ใกล้เคียง</h5>
+                    <h3 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการสถานที่ใกล้เคียง</h3>
                 </div>
                 <div class='panel-body'>
                 @if (count($errors) > 0)
@@ -141,8 +149,8 @@
                    <?= Form::model($place, array('url' => 'Place/' . $place->place_id,'method' => 'put','files'=>true)) ?>
                     
                         <div class='form-group'>
-                            <div class='col-md-11 col-xs-10 '>
-                              <div class="alert alert-info" style="margin-left: 130px;">
+                            <div class='col-md-11 col-xs-12 '>
+                              <div class="alert alert-info" style="margin-left: 15%;">
                                 หากต้องการแก้ไขรูปภาพ ให้กดปุ่มลบรูปภาพจากนั้นทำการเลือกรูปภาพใหม่<br>หากไม่ต้องการแก้ไขรูปภาพ ให้ข้ามขั้นตอนนี้ไป
                               </div>
                             </div>
@@ -152,13 +160,13 @@
                         
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-2'>แก้ไขรูปภาพ : </label>
+                                <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขรูปภาพ : </h5></label>
 
-                                    <div class='col-md-2 col-xs-2'>    
+                                    <div class='col-md-2 col-xs-12'>    
                                     <button><a href="{{url('Placepicdelete/'.$place->place_id)}}" style="color:black;">ลบรูปภาพ</a></button>        
                                     </div>
 
-                                    <div class='col-md-6 col-xs-4'>
+                                    <div class='col-md-6 col-xs-12'>
                                         <?= Form::file('place_pic',null , ['class' => 'formcontrol','style'=>'margin-bottom: 5px','value'=>$place->place_pic])  ?> 
                                     </div>       
                             </div>
@@ -168,8 +176,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'><br>
-                                <label class='control-label col-md-2 col-xs-2'>ชื่อ</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>ชื่อ :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                         
@@ -180,8 +188,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>URL</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>URL :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_url', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     </div>
@@ -192,8 +200,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>Facebook</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>Facebook :</h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_facebook', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     </div>
@@ -205,8 +213,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>คำอธิบาย</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>คำอธิบาย :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <?= Form::textarea('place_description', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     
                                 </div>

@@ -25,8 +25,7 @@ class ActivityRequest extends FormRequest
     {
     return [
     'activities_name' => 'required',
-    'activities_detail' => 'required',  
-    'activities_date' => 'required',
+    // 'activities_detail' => 'required',  
     'activitiesmain_pic' => 'required|mimes:jpeg,png',
     ];
     }
@@ -35,9 +34,8 @@ class ActivityRequest extends FormRequest
     public function messages() {
     return [
     'activities_name.required' => 'กรุณากรอกชื่อกิจกรรม',
-    'activities_detail.required' => 'กรุณากรอกรายละเอียดกิจกรรม',
-    'activities_date.required' => 'กรุณากรอกเวลากิจกรรม',
-    'activitiesmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพ',
+    // 'activities_detail.required' => 'กรุณากรอกรายละเอียดกิจกรรม',
+    'activitiesmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพรูปปก',
     'activitiesmain_pic.mimes'=> 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
     }
 }

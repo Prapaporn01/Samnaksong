@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <style type="text/css">
@@ -120,7 +127,7 @@
         <div class="col-md-9 col-xs-12" >
             <div class='panel panel-default dialog-panel' >
                 <div class='panel-heading'>
-                    <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบุคคลสำคัญที่เกี่ยวข้อง</h5>
+                    <h3 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบุคคลสำคัญที่เกี่ยวข้อง</h3>
                 </div>
                 <div class='panel-body'>
                 @if (count($errors) > 0)
@@ -138,8 +145,8 @@
                      <?= Form::model($person, array('url' => 'Persons/' . $person->person_id,'method' => 'put','files'=>true)) ?>
 
                         <div class='form-group'>
-                            <div class='col-md-11 col-xs-10 '>
-                              <div class="alert alert-info" style="margin-left: 130px;">
+                            <div class='col-md-11 col-xs-12 '>
+                              <div class="alert alert-info" style="margin-left: 20%;">
                                 หากต้องการแก้ไขรูปภาพ ให้กดปุ่มลบรูปภาพจากนั้นทำการเลือกรูปภาพใหม่<br>หากไม่ต้องการแก้ไขรูปภาพ ให้ข้ามขั้นตอนนี้ไป
                               </div>
                             </div>
@@ -148,13 +155,13 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-2'>แก้ไขรูปภาพ : </label>
+                                <label class='control-label col-md-3 col-xs-12'>แก้ไขรูปภาพ : </label>
 
-                                    <div class='col-md-2 col-xs-2'>    
+                                    <div class='col-md-3 col-xs-12'>    
                                     <button><a href="{{url('Personpicdelete/'.$person->person_id)}}" style="color:black;">ลบรูปภาพ</a></button>        
                                     </div>
 
-                                    <div class='col-md-6 col-xs-4' style="    margin-bottom: 5px;">
+                                    <div class='col-md-6 col-xs-12' style="    margin-bottom: 5px;">
                                         <?= Form::file('person_file_pic',null , ['class' => 'formcontrol','value'=>$person->person_file_pic])  ?> 
                                     </div>       
                             </div>
@@ -162,8 +169,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>ชื่อ</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-3 col-xs-12'>แก้ไขชื่อ :</label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('person_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                     </div>                                
@@ -174,8 +181,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>รายละเอียดบุคคลสำคัญที่เกี่ยวข้อง</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-3 col-xs-12'>แก้ไขรายละเอียดบุคคลสำคัญที่เกี่ยวข้อง :</label>
+                                <div class='col-md-9 col-xs-12'>
                                     <?= Form::textarea('person_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 10px']); ?>
                                     
                                 </div>

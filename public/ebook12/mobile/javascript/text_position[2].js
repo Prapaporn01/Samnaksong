@@ -1,0 +1,1 @@
+﻿positionForPages[2]={page:2,positions:[{word:"พรมแดน",left:0.245931,top:0.513968,width:0.448167,height:0.055088},{word:"www.kalyanamitra.org",left:0.354041,top:0.970716,width:0.291874,height:0.026060}]};

@@ -1,0 +1,1 @@
+﻿positionForPages[99]={page:99,positions:[{word:"www.kalyanamitra.org",left:0.358573,top:0.970936,width:0.282810,height:0.025864}]};

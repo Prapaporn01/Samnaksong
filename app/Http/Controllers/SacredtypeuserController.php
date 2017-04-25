@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SacredTypeUser;
+use Illuminate\Support\Facades\DB;
+use App\Sacred;
+use App\SacredMainUser;
+use App\Sacredpic;
+use App\Sacredtype;
+use App\SacredObject;
 
 class SacredtypeuserController extends Controller
 {
@@ -14,8 +19,18 @@ class SacredtypeuserController extends Controller
      */
     public function index()
     {
-        $item= SacredTypeUser::paginate(9);
-        return view('User.SacredTypeUser',['sacred_object'=>$item]);
+        
+         $item2= DB::table('sacred_object')
+
+        ->select('*')
+        ->join('sacred_type','sacred_type.sacredtype_id','=','sacred_object.sacredtype_id')
+        ->join('sacred_pic','sacred_pic.sacred_id','=','sacred_object.sacred_id')
+        ->get();
+
+       $item2 = $item2->unique('sacredtype_id');
+       /*dd($item2);*/
+
+        return view('User.SacredTypeUser',['sacredtype'=>$item2]);
     }
 
     /**
@@ -46,8 +61,18 @@ class SacredtypeuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {    
+       $item= SacredObject::where('sacredtype_id','=',$id)
+        ->get();
+
+        $item2= DB::table('sacred_object')
+        ->select('*')
+        ->join('sacred_type','sacred_type.sacredtype_id','=','sacred_object.sacredtype_id')
+        ->join('sacred_pic','sacred_pic.sacred_id','=','sacred_object.sacred_id')
+        ->get();
+        $item2 = $item2->unique('sacredtype_id');
+
+        return view('User.SacredMainUser',['sacredobject'=>$item,'sacredtype'=>$item2]);
     }
 
     /**
@@ -58,7 +83,10 @@ class SacredtypeuserController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $item= SacredMainUser::paginate(9);
+        // return view('User.SacredMainUser',['sacred_type'=>$item]);
+
+        
     }
 
     /**

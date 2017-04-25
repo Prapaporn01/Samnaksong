@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -120,7 +127,7 @@
             <br>
             <div class='panel panel-default dialog-panel' ">
             <div class='panel-heading'>
-        <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบทสวดมนต์</h5>
+        <h3 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบทสวดมนต์และเสียงสวดมนต์</h3>
       </div>
       <div class='panel-body'>
                 @if (count($errors) > 0)
@@ -139,8 +146,8 @@
 
                   <div class='form-group'>               
                         <div class='col-md-10 col-xs-12'>
-                                <label class='control-label col-md-3 col-xs-4'>ชื่อบทสวดมนต์</label>
-                                <div class='col-md-9 col-xs-6'>
+                                <label class='control-label col-md-3 col-xs-12'><h5><b>ชื่อบทสวดมนต์ :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                 <?= Form::text('pray_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                 </div>         
                         </div>
@@ -149,9 +156,9 @@
           
                  
                   <div class='form-group'>
-                    <div class='col-md-10 col-xs-10' style="    padding-top: 15px;">
-                    <label class='control-label col-md-3 col-xs-5'>ไฟล์บทสวดมนต์<div style="font-size:12px;">(ไฟล์นามสกุล .pdf)</div></label>
-                        <div class='col-md-8 col-xs-5'>
+                    <div class='col-md-10 col-xs-12' style="    padding-top: 15px;">
+                    <label class='control-label col-md-3 col-xs-12'><h5><b>ไฟล์บทสวดมนต์ :</b></h5><div style="font-size:12px;">(ไฟล์นามสกุล .pdf)</div></label>
+                        <div class='col-md-8 col-xs-12'>
                         <?= Form::file('pray_detail', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
                       </div>
                     </div>
@@ -161,8 +168,8 @@
 
 
               <div class='form-group'>
-                <div class='col-md-10 col-xs-10' style="    padding-top: 15px;">
-                    <label class='control-label col-md-3 col-xs-5'>ไฟล์เสียง<div style="font-size:12px;">(ไฟล์นามสกุล .mp3)</div></label>
+                <div class='col-md-10 col-xs-12' style="    padding-top: 15px;">
+                    <label class='control-label col-md-3 col-xs-12'><h5><b>ไฟล์เสียง :</b></h5><div style="font-size:12px;">(ไฟล์นามสกุล .mp3)</div></label>
                   <div class='col-md-8 col-xs-5'>
                      <?= Form::file('pray_sound', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
                   </div>

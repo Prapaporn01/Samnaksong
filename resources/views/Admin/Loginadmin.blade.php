@@ -3,8 +3,6 @@
 <style type="text/css">
     
     /* Reset CSS */
-
-
 h1{ font-size:28px;}
 h2{ font-size:26px;}
 h3{ font-size:18px;}
@@ -48,7 +46,7 @@ form:after {
     position: relative;
     text-align: center;
     text-shadow: 0 1px 0 #fff;
-    width: 400px;
+    width: 100%;
 }
 #content h1 {
     color: #7E7E7E;
@@ -225,32 +223,32 @@ form:after {
 </style>
 
 
-<body>
-	<div class="container main">
- 
-    <br>
-    <br> 
-    <br> 
-    <section id="content">
-        <form action="">
-            <h3 style="color:#8a6d3b; "><fontTh>เข้าสู่ระบบสำหรับผู้ดูแลระบบ</fontTh></h3>
-            <div>
-                <input type="text" placeholder="Username" required="" id="username" />
-            </div>
-            <div>
-                <input type="password" placeholder="Password" required="" id="password" />
-            </div>
-            <div>
-                <input type="submit" value="เข้าสู่ระบบ" style="padding-right:2px; padding-left: 2px; margin-bottom: 10px; margin-top:5px; margin-left:35px; margin-right:5px; height: 40px; width: 286px; " />
-            </div>
-        </form><!-- form -->
-        
-    </section><!-- content -->
-    <br>
-    <br>
-    <br> 
-</div><!-- container --> 
 
-</body>
-</html>
+	<div class="container main" >
+        <br>
+        <br> 
+        <br> 
+        <section id="content" style="margin-left: 20%;">
+
+            <form action="{{url('/login')}}" id="login" method="post" style="    margin-left: 10px;
+    margin-right: 10px;">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <h3 style="color:#8a6d3b; "><fontTh>เข้าสู่ระบบสำหรับผู้ดูแลระบบ</fontTh></h3>
+                <div class="col-md-10 col-xs-12" style="margin-left:10%;" style="margin-left: 0px;padding-left: 0px;padding-right: 0px;">
+                    <input type="text" placeholder="Username" required="" id="username" name="username" />
+                </div>
+                <div class="col-md-10 col-xs-12" style="margin-left:10%;" style="margin-left: 0px;padding-left: 0px;padding-right: 0px;">
+                    <input type="password" name="password" placeholder="Password" required="" id="password" />
+                </div>
+                <div class="col-md-10 col-xs-12" >
+                    <input type="submit" value="เข้าสู่ระบบ" style="padding-right:2px; padding-left: 2px; margin-bottom: 10px; margin-top:5px; margin-left:23%; margin-right:5px; height:50px; width: 79%; font-size:16px;" />
+                </div>
+            </form><!-- form -->
+            
+        </section><!-- content -->
+        <br>
+        <br>
+        <br> 
+    </div><!-- container --> 
+
 @stop

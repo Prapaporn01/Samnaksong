@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 <style type="text/css">
@@ -118,9 +125,10 @@
 
 
         <div class="col-md-9 col-xs-12" >
+        <br><br>
             <div class='panel panel-default dialog-panel' >
                 <div class='panel-heading'>
-                    <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการสถานที่ใกล้เคียง</h5>
+                    <h3 style=" margin-bottom: 0px;    margin-top: 0px;">จัดการสถานที่ใกล้เคียง :</h3>
                 </div>
                 <div class='panel-body'>
                 @if (count($errors) > 0)
@@ -136,11 +144,11 @@
 
 
                     {!! Form::open(array('url' => 'Place','files' => true)) !!}
-                    <form class='form-horizontal' role='form' style="width: 1000px;padding-top: 15px;padding-left: 60px;"  >
+                    <form class='form-horizontal' role='form' style="padding-top: 15px;padding-left: 60px;"  >
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>ชื่อ</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>ชื่อ :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                         
@@ -151,8 +159,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>URL</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>URL :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_url', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     </div>
@@ -163,8 +171,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>Facebook</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>Facebook</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
                                         <?= Form::text('place_facebook', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     </div>
@@ -176,8 +184,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>คำอธิบาย</label>
-                                <div class='col-md-9 col-xs-8'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>คำอธิบาย :</b></h5></label>
+                                <div class='col-md-9 col-xs-12'>
                                     <?= Form::textarea('place_description', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
                                     
                                 </div>
@@ -188,8 +196,8 @@
 
                         <div class='form-group'>
                             <div class='col-md-11 col-xs-12'>
-                                <label class='control-label col-md-2 col-xs-2'>รูปภาพ</label>
-                                <div class='col-md-8 col-xs-4'>
+                                <label class='control-label col-md-2 col-xs-12'><h5><b>รูปภาพ :</b></h5></label>
+                                <div class='col-md-8 col-xs-12'>
                                                                   
                                        <?= Form::file('place_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
                                 </div>

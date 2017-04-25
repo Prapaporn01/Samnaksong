@@ -26,8 +26,11 @@ class SacredRequest extends FormRequest
     return [
     'sacred_name' => 'required',
     'sacred_detail' => 'required',
+    
+    // 'sacredtype_add'=>'required',
     'sacredmain_pic'=>'required|mimes:jpeg,jpg,png',
-    'sacred_type' => 'required',
+    'files.*' => 'required|mimes:jpeg,jpg,png',
+
     ];
     }
 
@@ -35,9 +38,12 @@ class SacredRequest extends FormRequest
     public function messages() {
     return [
     'sacred_name.required' => 'กรุณากรอกชื่อวัตถุมงคล',
-    'sacred_detail.required' => 'กรุณากรอกณายละเอียด',
-    'sacred_type.required' => 'กรุณากรอกประเภทวัตถุมงคล',
-    'sacredmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพ',
-    'sacredmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
+    'sacred_detail.required' => 'กรุณากรอกรายละเอียดวัตถุมงคล',
+    
+    'sacredmain_pic.required'=> 'กรุณาเลือกไฟล์ภาพรูปปก',
+    // 'sacredtype_add.required'=> 'กรุณากรอกประเภทวัตถุมงคล',
+    'sacredmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png',
+    'files[].*.required'=> 'กรุณาเลือกไฟล์รูปภาพ',
+    'files[].*.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
     }
 }

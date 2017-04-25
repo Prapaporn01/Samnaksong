@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -16,12 +23,15 @@
   color: #8a6d3b;
 }
 
+b.font1{
+  font-size:16px;
+}
+
 </style>
 <body>
 
      
-        <div class="col-md-9">
-        <br>
+        <div class="col-md-9" style="margin-top: 5px;margin-bottom: 5px;">
         <form METHOD="LINK" ACTION="{{url('/Worship/create')}}">
             <input type="submit" class="btn btn-info btn-lg" style='float:right' value="เพิ่มข้อมูลเครื่องสักการะบูชา">
         </form>
@@ -31,9 +41,9 @@
             <table class="table table-striped">
                     <thead >
                       <tr>
-                        <th width="10%">รูปปก</th>
-                        <th width="30%">ชื่อเครื่องสักการะบูชา</th>
-                        <th width="15%">รายละเอียดเครื่องสักการะบูชา</th>
+                        <th width="10%"><h4><b>รูปปก</b></h4></th>
+                        <th width="30%"><h4><b>ชื่อเครื่องสักการะบูชา</b></h4></th>
+                        <th width="18%"><h4><b>รายละเอียดเครื่องสักการะบูชา</b></h4></th>
                         <th width="5%"></th>
                         <th width="5%"></th>
                         <th width="5%"></th>
@@ -45,19 +55,19 @@
                         <td>                            
                             <img src="{{ 'images/resize/'.$row->worshipmain_pic }}">
                         </td>
-                        <td>{{$row->worship_name}}</td>
+                        <td><h4>{{$row->worship_name}}</h4></td>
                         <td>
-                          <button href="#deleteModal_{{$row->worship_id }}" type="button" class="btn btn-default btn-sm" data-toggle="modal" >ดูรายละอียด</button>
+                          <button href="#deleteModal_{{$row->worship_id }}" type="button" class="btn btn-default btn-lg active btn-sm" data-toggle="modal" ><b  class="font1">ดูรายละอียด</b></button>
 
                                   <!-- Modal -->
                                   <div class="modal fade" id="deleteModal_{{ $row->worship_id  }}" role="dialog">
                                     <div class="modal-dialog modal-sm">
                                       <div class="modal-content">
                                         <div class="modal-header">                                         
-                                          <h4 class="modal-title">คำอธิบาย</h4>
+                                          <h4 class="modal-title"><b>คำอธิบาย</b></h4>
                                         </div>
                                         <div class="modal-body">
-                                          <p>{{$row->worship_detail}}</p>
+                                          <p><h4>{{$row->worship_detail}}</h4></p>
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,12 +77,19 @@
                                   </div>
 
                         </td>
-                        <td><a href="{{ url('/Worshippicadmin/'.$row->worship_id)}}"><div style='   margin-right:5px; float:right; '><input type="submit" class="btn btn-success btn-sm"  value="จัดการรูปในอัลบัม"></div></a></td>
+                        <td><a href="{{ url('/Worshippicadmin/'.$row->worship_id)}}"><div style='   margin-right:5px; float:right; '><input type="submit" class="btn btn-success btn-lg active btn-sm" style="font-size:16px; font-weight:bold;"  value="รูปในอัลบัม"></div></a></td>
 
-                        <td><a href="{{ url('/Worship/'.$row->worship_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit">แก้ไขข้อมูล</button></a></td>
-                       <?= Form::open(array('url' => 'Worship/' . $row->worship_id,
-                        'method' => 'delete')) ?>
-                        <td><button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบ</button></td>
+                        <td><a href="{{ url('/Worship/'.$row->worship_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit"><b  class="font1">แก้ไข</b></button></a></td>
+
+
+                        <?= Form::open(array('url' => 'Worship/' . $row->worship_id,
+                        'method' => 'delete')) ?> 
+                        <td>
+                        <button href="#delete{{$row->worship_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบข้อมูลเครื่องสักการะบูชา?')" ><b  class="font1">ลบอัลบัม</b></button>
+                        </td>
+
+
+                       
                          {!! Form::close() !!}
                       </tr>
                        @endforeach

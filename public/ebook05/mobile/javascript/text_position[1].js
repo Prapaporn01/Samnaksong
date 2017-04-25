@@ -1,0 +1,1 @@
+﻿positionForPages[1]={page:1,positions:[{word:"สงบจิต สว่างใจ",left:0.274788,top:0.407505,width:0.449695,height:0.080483},{word:"พระไพศาล  วิสาโล",left:0.327306,top:0.493115,width:0.344690,height:0.063952}]};

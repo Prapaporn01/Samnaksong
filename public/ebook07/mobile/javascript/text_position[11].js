@@ -1,0 +1,1 @@
+﻿positionForPages[11]={page:11,positions:[{word:"พ า จิ ต ก ลั บ บ้ า น",left:0.176893,top:0.067216,width:0.178207,height:0.021072},{word:"10",left:0.174179,top:0.032397,width:0.045000,height:0.038544}]};

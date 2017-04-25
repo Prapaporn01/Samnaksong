@@ -1,0 +1,1 @@
+﻿positionForPages[46]={page:46,positions:[{word:"พร ะอา จา ร ย์ช า น น ท์  ช ยน นฺ โ ท",left:0.528361,top:0.067216,width:0.295361,height:0.021071},{word:"1.65",left:0.004478,top:0.996655,width:0.000000,height:0.004595}]};

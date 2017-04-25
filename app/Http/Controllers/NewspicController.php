@@ -8,6 +8,7 @@ use App\Newspic;
 use App\News;
 use Image;
 use File;
+use Session;
 
 
 class NewspicController extends Controller
@@ -20,7 +21,10 @@ class NewspicController extends Controller
     public function index($id)
     {
         $item = DB::table('news_pic')->where('news_id',$id)->paginate(4);
-        return view('Admin.Newspicadmin',['news_pic'=>$item]);    
+         if (!$item->isEmpty())
+            return view('Admin.Newspicadmin',['news_pic'=>$item]);
+        else
+            return view('Admin.Newspicadmin',['empty'=> $id]);
     }
 
     /**
@@ -30,7 +34,13 @@ class NewspicController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Subpicnews');
+    }
+
+    public function createpic($id)
+    {
+        // var_dump($id);
+        return view('Admin.Subpicnews',['news_pic'=>$id]);
     }
 
     /**
@@ -41,7 +51,68 @@ class NewspicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+                
+
+             if ($request->hasFile('files')) {
+                    $count = count($request->file('files'));
+                    if ($count>25) {
+                        Session::flash('flash_message','อัพโหลดรูปได้ไม่เกิน 25 รูปเท่านั้น!!!');
+                        return redirect()->back();
+                    }
+
+
+                    $files = $request->file('files');
+
+
+            
+                    foreach($files as $file){
+                        $news= new Newspic();   
+                        $news->news_id= $request->news_pic;
+
+                        $filename = "Subnews_".str_random(10) . '.' . $file->
+                getClientOriginalExtension();
+
+                        $file->move(public_path() . '/images/', $filename);
+
+
+                Image::make(public_path() . '/images/' . $filename )
+                        ->resize(150, 150)
+                        ->save(public_path() . '/images/resize/' . $filename);
+
+                Image::make(public_path() . '/images/' . $filename )
+                        ->resize(650, 500)
+                        ->save(public_path() . '/images/News/' . $filename);
+                        
+                $news->news_file_pic = $filename;
+                File::delete(public_path() . '/images/' . $news->news_file_pic);
+
+
+                $news->save();      
+                    }                        
+                }
+                
+                  
+                return redirect(route('addnews', ['id' => $request->news_pic]));
+
+
+
+                // $news= new Newspic();        
+                                
+                // $news->news_file_pic= $request->news_file_pic;    
+                // $news->news_id= $request->news_pics;          
+          
+                //  if ($request->hasFile('news_file_pic')) {
+                //     $filename = "Subnews_".str_random(10) . '.' . $request->file('news_file_pic')->getClientOriginalExtension();
+                //     $request->file('news_file_pic')->move(public_path() . '/images/', $filename);
+                //     Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
+                //     Image::make(public_path() . '/images/' . $filename )->resize(650, 500)->save(public_path() . '/images/resizeBig/' . $filename);
+                //     $news->news_file_pic = $filename;
+                //     File::delete(public_path() . '/images/' . $news->news_file_pic);             
+                //     }
+                //     $news->save();
+
+                // return redirect(route('addnews', ['id' => $request->news_pics]));
     }
 
     /**
@@ -92,7 +163,7 @@ class NewspicController extends Controller
 
             File::delete(public_path() . '\\images\\' . $newspic->news_file_pic);
             File::delete(public_path() . '\\images\\resize\\' . $newspic->news_file_pic);
-        
+            File::delete(public_path() . '\\images\\News\\' . $newspic->news_file_pic);
         $newspic->delete();
 
         return redirect()->action('NewspicController@index', ['id' => $id_return]);

@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -120,7 +127,7 @@
             <br>
             <div class='panel panel-default dialog-panel' ">
             <div class='panel-heading'>
-        <h5 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบทสวดมนต์</h5>
+        <h3 style="    margin-bottom: 0px;    margin-top: 0px;">จัดการบทสวดมนต์และเสียงสวดมนต์</h3>
       </div>
       <div class='panel-body'>
        @if (count($errors) > 0)
@@ -135,8 +142,7 @@
 
 
           <?= Form::model($pray, array('url' => 'Pray/' . $pray->pray_id,'method' => 'put','files'=>true)) ?>
-        <form class='form-horizontal' role='form' style="width: 1000px;padding-top: 15px;padding-left: 60px; ">
-                                  
+
           
                  <div class='form-group'>
                             <div class='col-md-12 col-xs-12 '>
@@ -151,13 +157,13 @@
 
                         <div class='form-group'>
                             <div class='col-md-9 col-xs-10' style="margin-top: 10px;">
-                                <label class='control-label col-md-4 col-xs-4'>แก้ไขไฟล์บทสวดมนต์ : <br><div style="font-size:12px;">(ไฟล์นามสกุล .pdf)</div></label>
+                                <label class='control-label col-md-5 col-xs-12'>แก้ไขไฟล์บทสวดมนต์ : <br><div style="font-size:12px;">(ไฟล์นามสกุล .pdf)</div></label>
 
-                                <div class='col-md-3 col-xs-3'>    
-                                    <button><a href="{{url('Praydelete/'.$pray->pray_id)}}" style="color:black;">ลบไฟล์</a></button>  
+                                <div class='col-md-3 col-xs-12'>    
+                                    <button><a href="{{url('Praydeletefile/'.$pray->pray_id)}}" style="color:black;">ลบไฟล์</a></button>  
                                           
                                 </div>  
-                                <div class='col-md-3 col-xs-3'>
+                                <div class='col-md-3 col-xs-12'>
                                   <?= Form::file('pray_detail', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px','value'=>$pray->pray_detail])  ?> 
                                 </div>
                             </div>
@@ -165,22 +171,22 @@
 
 
                         <div class='form-group'>
-                            <div class='col-md-9 col-xs-10' style="margin-top: 10px;">
-                                <label class='control-label col-md-4 col-xs-4'>แก้ไขไฟล์เสียง : <br><div style="font-size:12px;">(ไฟล์นามสกุล .mp3)</div></label>
+                            <div class='col-md-9 col-xs-12' style="margin-top: 10px;">
+                                <label class='control-label col-md-5 col-xs-12'>แก้ไขไฟล์เสียง : <br><div style="font-size:12px;">(ไฟล์นามสกุล .mp3)</div></label>
 
-                                <div class='col-md-3 col-xs-3'>    
-                                    <button><a href="{{url('Praydelete/'.$pray->pray_id)}}" style="color:black;">ลบไฟล์</a></button>   
+                                <div class='col-md-3 col-xs-12'>    
+                                    <button><a href="{{url('Praydeletesound/'.$pray->pray_id)}}" style="color:black;">ลบไฟล์</a></button>   
                                 </div>
-                                <div class='col-md-3 col-xs-3'>
+                                <div class='col-md-3 col-xs-12'>
                                     <?= Form::file('pray_sound', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px','value'=>$pray->pray_sound])  ?>
                                 </div>    
                             </div>
                         </div>
 
                     <div class='form-group' >               
-                        <div class='col-md-10 col-xs-10' style="margin-top:15px;">
-                                <label class='control-label col-md-3 col-xs-4'>ชื่อบทสวดมนต์</label>
-                                <div class='col-md-9 col-xs-6'>
+                        <div class='col-md-10 col-xs-12' style="margin-top:15px;">
+                                <label class='control-label col-md-3 col-xs-12'>ชื่อบทสวดมนต์ :</label>
+                                <div class='col-md-9 col-xs-12'>
                                 <?= Form::text('pray_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                 </div>         
                         </div>

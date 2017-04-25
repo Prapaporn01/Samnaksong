@@ -21,7 +21,7 @@ body{
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
-    background-image: url(images/bg1.jpg);
+    background-image: url({{ asset('images/bg1.jpg')}});
 }
 /*body {
     display: block;
@@ -29,13 +29,15 @@ body{
 
 .container {
   padding: 0;
-  /*background-color: #f9e9b2;*/
   background-color: #fffecb;
+  width:85%;
+
 }
 
 
 .container main {
   padding: 20px 0;
+
 }
 
 .footer{
@@ -73,7 +75,7 @@ ul.nav > li > a:hover {
     background-color: #9a6600;
     color: white;
     padding: 16px;
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
 }
@@ -110,8 +112,8 @@ ul.nav > li > a:hover {
 }
 
 
-.fontsize16{
-  font-size: 16px;
+.fontsize14{
+  font-size: 14px;
   padding: 2px;
 }
 
@@ -129,7 +131,7 @@ ul.nav > li > a:hover {
 }
 
 .btnNews {
-  background-color: #e0e0e0;
+  background-color: #ffcc66;
 }
 
 .mastheadPlace{
@@ -154,29 +156,28 @@ ul.nav > li > a:hover {
 .breadcrumbA{
   padding: 0px 20px 10px 10px;
   margin: 15px 10px 0px 15px;
-  border-radius: 0px;
-  /*background: #d5d3d3;*/
-  background: #e4e3e1;
+  border-radius: 5px;
+  background: #ffcc66;
 }
 
 .breadcrumbB{
   padding: 0px 0px 10px 10px;
   margin: 0px 25px 0px 15px;
-  border-radius: 0px;
-  background: #e4e3e1;
+  border-radius: 5px;
+  background: #ffcc66;
 }
 
 .breadcrumbC{
   padding: 0px 0px 10px 10px;
   margin: 1px 10px 0px 0px;
-  border-radius: 0px;
-  background: #e4e3e1;
+  border-radius: 5px;
+  background: #ffcc66;
 }
 .breadcrumbD{
   padding: 0px 0px 10px 10px;
   margin: 5px 0px 0px 0px;
-  border-radius: 0px;
-  background: #e4e3e1;
+  border-radius: 5px;
+  background: #ffcc66;
 }
 
 textwhite{
@@ -191,8 +192,8 @@ color:#ffffff;
 
 
 .list-group-item:first-child {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .list-group-item:last-child {
   margin-bottom: 0px;
@@ -226,11 +227,13 @@ color:#ffffff;
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
   background-color:  #8a6d3b;
+
 }
 
 .pagination > li > a,
 .pagination > li > span {
   color: #8a6d3b;
+  
 }
 
 
@@ -280,5 +283,3 @@ color:#ffffff;
     background: #ffffff;
 }
 */
-
-

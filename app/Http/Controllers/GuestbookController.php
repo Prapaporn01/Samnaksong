@@ -15,7 +15,7 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        $item= Guestbook::orderBy('guest_id', 'desc')->paginate(5);
+        $item= Guestbook::orderBy('guest_id', 'desc')->paginate(10);
         return view('Admin.GuestAdmin',['Guestbook'=>$item]);
     }
 

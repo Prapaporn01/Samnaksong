@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PrayMainUser;
+use Illuminate\Support\Facades\DB;
+use App\Pray;
+
 
 class PraymainuserController extends Controller
 {
@@ -14,7 +16,7 @@ class PraymainuserController extends Controller
      */
     public function index()
     {
-        $item= PrayMainUser::orderBy('pray_id', 'desc')->paginate(10);
+        $item= Pray::orderBy('pray_id', 'desc')->paginate(10);
         return view('User.PrayMainUser',['pray'=>$item]);
     }
 
@@ -46,8 +48,10 @@ class PraymainuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {         
+        $item= Pray::orderBy('pray_id', 'desc')->where('pray.pray_id',$id)->paginate();
+        return view('User.PrayUser',['pray'=>$item]);
+        
     }
 
     /**

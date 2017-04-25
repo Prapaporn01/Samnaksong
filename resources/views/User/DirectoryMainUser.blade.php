@@ -1,11 +1,83 @@
-@extends('site.layoutuser')
+@extends('site.layoutforuser')
 @section('menutop')
+<style type="text/css">
+    .breadcrumb {
+    padding: 0px;
+    background: #D4D4D4;
+    list-style: none; 
+    overflow: hidden;
+    margin-top: 0px;
+}
+.breadcrumb>li+li:before {
+    padding: 0;
+}
+.breadcrumb li { 
+    float: left; 
+}
+.breadcrumb li.active a {
+    background: brown;                   /* fallback color */
+    background: #cc9966 ; 
+}
+.breadcrumb li.completed a {
+    background: brown;                   /* fallback color */
+    background: hsla(153, 57%, 51%, 1); 
+}
+.breadcrumb li.active a:after {
+    border-left: 30px solid #cc9966 ;
+}
+.breadcrumb li.completed a:after {
+    border-left: 30px solid hsla(153, 57%, 51%, 1);
+} 
+
+.breadcrumb li a {
+    color: #080808;
+    text-decoration: none; 
+    padding: 10px 0 10px 45px;
+    position: relative; 
+    display: block;
+    float: left;
+}
+.breadcrumb li a:after { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid hsla(0, 0%, 83%, 1);
+    position: absolute;
+    top: 50%;
+    margin-top: -50px; 
+    left: 100%;
+    z-index: 2; 
+}   
+.breadcrumb li a:before { 
+    content: " "; 
+    display: block; 
+    width: 0; 
+    height: 0;
+    border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px; 
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1; 
+}   
+.breadcrumb li:first-child a {
+    padding-left: 15px;
+}
+.breadcrumb li a:hover { background: #cc9966  ; }
+.breadcrumb li a:hover:after { border-left-color: #cc9966   !important; }
+</style>
 <body>
-            <div class="col-md-11 col-xs-11" >
-                <ul class="breadcrumb" style="padding-top: 8px;margin-bottom: 0px;margin-left: 150px;margin-right: 25px;">
-                    <li><a href="{{ url('/')}}">กลับสู่หน้าหลัก</a></li>
-                    <li class="active">ทำเนียบเจ้าอาวาส</li>
-                </ul>
+            <div class="container">
+                  <ul class="breadcrumb">
+                      <li><a href="{{ url('/')}}" style="font-size:18px;"><fontTh>กลับสู่หน้าหลัก</fontTh></a></li>
+                      <li class="active"><a href="javascript:void(0);" style="font-size:18px;"><fontTh>ทำเนียบเจ้าอาวาส</fontTh></a></li>
+                  </ul>          
             </div>
             
 </body>
@@ -18,27 +90,37 @@
                 <br>
                 <br>
                 <br>
-                <center style="color:black; font-size:18px;"><b><fontTh>ทำเนียบเจ้าอาวาส</fontTh></b></center>
-
-
-
+                <center style="color:#330033; font-size:24px;"><b><fontTh>ทำเนียบเจ้าอาวาส</fontTh></b></center>
+                <br>
+                <br> 
+<!-- 
                  @foreach ($directory as $row)
-                <div class="col-md-4">
-                    <br>
-                    <br>
-                    <div align="center"><img src="images/pic1.jpg" width="170" height="200"></div>
-                    <div align="center"><font color="black" style="font-size:14px;"><b><fontTh><a href="{{ url('DirectoryUser')}}">{{$row->directory_name}}<br>({{$row->directory_time}})</a></fontTh></b></center></font>
-                   </div>                
+                 <div class="col-md-4">
+                    <div class="thumbnail">
+                            <a class="grid__link" htarget="_blank" href="{{ url('/DirectoryMainUser/'.$row->directory_id)}}">
+                            <img class="grid__img" src="{{asset('images/resize/'.$row->directorymain_pic)}}" />
+                            <div class="grid__item-title" style="font-size:16px; color:#337ab7;" ><b>{{$row->directory_name}}<br><br>{{$row->directory_time}}</b></div>
+                            </a>                               
+                    </div>
                 </div>
-                @endforeach
-               
+                @endforeach -->
+
+                 <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a class="grid__link" htarget="_blank" href="{{ url('/DirectoryUser')}}">
+                               <img class="grid__img" src="{{asset('images/Directory/3.jpg')}}" >
+                                <br>
+                                <div class="grid__item-title" style="font-size:16px; color:#337ab7;">
+                                    <fontTh><b>พระนพปฏลวงศ์ ภรณ์รัตนตรัย ( คนฺธสีโล )<br>(เจ้าสำนักสงฆ์สิริมงคล) </b></fontTh>
+                                </div>
+                        </a>
+                    </div>
+                </div>
+
  
 
                 <br>
                 <br>
-
-
-
                 <div class="row">
                     <div class="col-md-12">
                         <div align="center">

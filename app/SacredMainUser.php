@@ -8,8 +8,8 @@ class SacredMainUser extends Model
 {
     public $timestamps = false;
 	
-	protected $primaryKey = 'sacred_id'; 
+	protected $primaryKey = 'sacredtype_id'; 
 
-    protected $table="sacred_object";
-    protected $fillable=["sacred_name"];
+    protected $table="sacred_type";
+    protected $fillable=["sacredtype_name"];
 }

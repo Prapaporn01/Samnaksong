@@ -1,0 +1,1 @@
+﻿positionForPages[1]={page:1,positions:[{word:"พระไพศาล วิสาโล",left:0.211264,top:0.697649,width:0.292074,height:0.046271}]};

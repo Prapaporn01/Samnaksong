@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\WorshipMainUser;
+use App\Worship;
+use App\Worshippic;
+
 
 class WorshipmainuserController extends Controller
 {
@@ -13,8 +16,8 @@ class WorshipmainuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $item= WorshipMainUser::paginate(9);
+    {  
+        $item= Worship::orderBy('worship_id', 'desc')->paginate(9);
         return view('User.WorshipMainUser',['worship'=>$item]);
     }
 
@@ -46,8 +49,17 @@ class WorshipmainuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $item=DB::table('worship_pic')->Join('worship','worship_pic.worship_id','=','worship.worship_id')       
+            ->select('worship.*','worship_pic.worship_file_pic')->where('worship.worship_id',$id)
+            ->paginate(9);
+          
+        $item2=DB::table('worship_pic')->Join('worship','worship_pic.worship_id','=','worship.worship_id')       
+            ->select('worship.*','worship_pic.worship_file_pic')->where('worship.worship_id',$id)
+            ->get();
+
+        
+        return view('User.WorshipUser',['worship'=>$item,'worship2'=>$item2]);
     }
 
     /**

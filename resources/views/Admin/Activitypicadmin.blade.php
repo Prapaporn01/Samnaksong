@@ -1,6 +1,12 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
-
 <style type="text/css">
     .pagination > .active > a,
 .pagination > .active > span,
@@ -15,13 +21,20 @@
 .pagination > li > span {
   color: #8a6d3b;
 }
-
 </style>
 
 <body>
 
         <div class="col-md-9">
-        <br>
+         <?php if(empty($activities_pic)){ ?> 
+            <a href="{{ url ('/Activity') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>   
+            <a href="{{url('Subpicactivity/'.$empty.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-bottom:5px; margin-top:5px;'>เพิ่มรูปภาพในอัลบัม</a>
+        <?php }?>
+
+       <?php if(!empty($activities_pic)){ ?>
+          <a href="{{ url ('/Activity') }}" class="btn btn-info btn-lg "  style='float:left; margin-top:5px; margin-left:5px;'>Back</a>
+          <div>
+          <a href="{{url('Subpicactivity/'.$activities_pic[0]->activities_id.'/create')}}" class="btn btn-info btn-lg "  style='float:right;margin-top:5px;margin-bottom:5px; '>เพิ่มรูปภาพในอัลบัม</a></div>
 
             <table class="table table-striped table-bordered ">
                     <thead  >
@@ -38,13 +51,17 @@
                                                
                             <img src='../images/resize/<?php echo $row->activities_file_pic; ?>'>
                         </td>
-                            <td>
-                        <?= Form::open(array('url' => '/Activitypic/' . $row->activities_pic_id,
-                        'method' => 'delete')) ?>
-                        <button class="btn btn-danger btn-lg active btn-sm" type="submit">ลบ</button>
+
+
+
+                         <?= Form::open(array('url' => 'Activitypic/' . $row->activities_pic_id,
+                        'method' => 'delete')) ?> 
+                        <td>
+                        <button href="#delete{{$row->activities_pic_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบรูปภาพกิจกรรม?')" >ลบ</button>
+                        </td>
+                           
                         {!! Form::close() !!}
-                      </td> 
-                       
+
 
                                         
                       </tr>
@@ -60,11 +77,8 @@
                         </div>  
                     </div>
                 </div>
-
+                <?php }?>
         </div>
-
-   
-
 </body>
 
 </html>

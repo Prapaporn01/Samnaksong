@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\ActivityMainUser;
+use App\Activity;
+use App\Activitypic;
 
 class ActivitymainuserController extends Controller
 {
@@ -15,7 +16,7 @@ class ActivitymainuserController extends Controller
     public function index()
     {
 
-        $item= ActivityMainUser::orderBy('activities_id', 'desc')->paginate(9);
+        $item= Activity::orderBy('activities_id', 'desc')->paginate(9);
         return view('User.ActivityMainUser',['activities'=>$item]);
     }
 
@@ -48,7 +49,11 @@ class ActivitymainuserController extends Controller
      */
     public function show($id)
     {
-        //
+        $item=DB::table('activities_pic')->Join('activities','activities_pic.activities_id','=','activities.activities_id')
+            ->select('activities.*','activities_pic.activities_file_pic')->where('activities.activities_id',$id)
+            ->paginate(12);
+        
+        return view('User.ActivityUser',['activities'=>$item]);
     }
 
     /**

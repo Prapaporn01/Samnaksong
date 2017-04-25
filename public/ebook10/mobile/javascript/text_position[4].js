@@ -1,0 +1,1 @@
+﻿positionForPages[4]={page:4,positions:[{word:"ใหัสงแก่น",left:0.316530,top:0.551396,width:0.279574,height:0.060157},{word:"www.kalyanamitra.org",left:0.350962,top:0.968295,width:0.298030,height:0.029111}]};

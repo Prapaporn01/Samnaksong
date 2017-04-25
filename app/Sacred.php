@@ -11,7 +11,7 @@ class Sacred extends Model
 	protected $primaryKey = 'sacred_id';
 	
     protected $table="sacred_object";
-    protected $fillable=["sacred_id","sacred_name","sacred_detail","sacred_type","sacredmain_pic"];
+    protected $fillable=["sacred_id","sacred_name","sacred_detail","sacredtype_id","sacredmain_pic"];
 
   
 

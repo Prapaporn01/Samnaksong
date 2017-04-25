@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+    if(!isset($_SESSION['username'])){
+        return redirect()->action('AdloginController@index');
+    }
+?>
 @extends('site.layoutadmin')
 @section('content')
 
@@ -15,13 +22,15 @@
 .pagination > li > span {
   color: #8a6d3b;
 }
+b.font1{
+  font-size:16px;
+}
 
 </style>
 <body>
-        <div class="col-md-9">
-        <br>
+        <div class="col-md-9" style="margin-top: 5px;margin-bottom: 5px;">
         <form METHOD="LINK" ACTION="{{url('Pray/create')}}">
-            <input type="submit" class="btn btn-info btn-lg" style='float:right' value="เพิ่มข้อมูลบทสวดมนต์">
+            <input type="submit" class="btn btn-info btn-lg" style='float:right' value="เพิ่มข้อมูลบทสวดมนต์และเสียงสวดมนต์">
         </form>
         <br>
         <br>
@@ -29,9 +38,9 @@
             <table class="table table-striped">
                     <thead >
                       <tr>
-                        <th width="40%">ชื่อบทสวดมนต์</th>
-                        <th width="25%">ไฟล์เสียง</th>
-                        <th width="25%">ไฟล์บทสวดมนต์</th>
+                        <th width="40%"><h4><b>ชื่อบทสวดมนต์</b></h4></th>
+                        <th width="25%"><h4><b>ไฟล์เสียง</b></h4></th>
+                        <th width="25%"><h4><b>ไฟล์บทสวดมนต์</b></h4></th>
                         <th width="2%"></th>
                         <th width="2%"></th>
                       </tr>
@@ -39,15 +48,21 @@
                     <tbody>
                       <tr>
                        @foreach ($Pray as $row)
-                        <td>{{$row->pray_title}}</td>
-                        <td>{{$row->pray_sound}}</td>
-                        <td>{{$row->pray_detail}}</td>
-                        <td><a href="{{ url('/Pray/'.$row->pray_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit">แก้ไขข้อมูล</button></a></td>
+                        <td><h4 >{{$row->pray_title}}</h4></td>
+                        <td><h4 >{{$row->pray_sound}}</h4></td>
+                        <td><h4 >{{$row->pray_detail}}</h4></td>
+                        <td><a href="{{ url('/Pray/'.$row->pray_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit"><b class="font1">แก้ไขข้อมูล</button></a></td>
                         <td>
+
+
+
                         <?= Form::open(array('url' => 'Pray/' . $row->pray_id,
-                        'method' => 'delete')) ?>
-                        <button type="submit" class="btn btn-danger btn-lg active btn-sm">ลบ</button>
-                        {!! Form::close() !!}
+                        'method' => 'delete')) ?> 
+                        <td>
+                        <button href="#delete{{$row->pray_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบข้อมูลบทสวดมนต์และเสียงสวดมนต์?')" ><b class="font1">ลบ</b></button>
+                        </td>
+                         {!! Form::close() !!}
+
                         </td>     
                       </tr>
                        @endforeach                      

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PersonsUser;
+use App\Persons;
 
 class PersonsuserController extends Controller
 {
@@ -14,7 +14,7 @@ class PersonsuserController extends Controller
      */
     public function index()
     {
-        $item= PersonsUser::paginate(9);
+        $item= Persons::paginate(9);
         return view('User.PersonsUser',['related_persons'=>$item]);
     }
 

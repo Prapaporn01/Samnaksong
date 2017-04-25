@@ -1,0 +1,1 @@
+﻿positionForPages[83]={page:83,positions:[{word:"Uc ",left:0.461304,top:0.990439,width:0.059581,height:0.007175},{word:"V",left:0.507751,top:0.990439,width:0.007342,height:0.007175},{word:"www.kalyanamitra.org",left:0.358133,top:0.970857,width:0.283691,height:0.025934}]};
