@@ -148,7 +148,7 @@ session_start();
                                 <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มชื่อบุคคลที่เกี่ยวข้อง :</b></h5></label>
                                 <div class='col-md-6 col-xs-12'>
                                     <div class='form-group internal'>
-                                        <?= Form::text('person_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>    
+                                        <?= Form::text('person_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>50]); ?>    
                                     </div>
                                 </div>
                             </div>

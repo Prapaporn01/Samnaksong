@@ -48,7 +48,7 @@ class KingpinController extends Controller
             if ($request->hasFile('files')) {
              $count = count($request->file('files'));
 
-            if ($count>=25) {
+            if ($count>25) {
           
                 Session::flash('flash_message','อัพโหลดรูปในอัลบัมได้ไม่เกิน 25 รูปเท่านั้น!!!');
                 return redirect()->back();

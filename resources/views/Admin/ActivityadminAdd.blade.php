@@ -84,7 +84,9 @@ label.control-label {
                             <div class='col-md-11 col-xs-12'>
                                 <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มรูปปก : </b></h5></label>
                                   <div class='col-md-6 col-xs-12'>
-                                    <?= Form::file('activitiesmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
+                                    <!-- <?= Form::file('activitiesmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px' ])  ?> -->
+
+                                    <input  type="file" name="activitiesmain_pic" id="filer_input" style="margin-bottom: 5px" required>
                                   </div>
                             </div>
                         </div>  
@@ -92,8 +94,10 @@ label.control-label {
                         <div class='form-group'>               
                               <div class='col-md-11 col-xs-12'>
                                       <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มชื่อกิจกรรม : </b></h5></label>
-                                      <div class='col-md-6 col-xs-12'>
-                                        <?= Form::text('activities_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                      <div class='col-md-8 col-xs-12'>
+                                        <!-- <?= Form::text('activities_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?> -->
+                                        <input  class="form-control" name="activities_name" id="activities_name" style="margin-bottom: 0px;" maxlength="50" required ></input>
+
                                       </div>         
                               </div>
                         </div>
@@ -102,7 +106,8 @@ label.control-label {
                             <div class='col-md-11 col-xs-12'>
                                 <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มคำอธิบาย :</b></h5></label>
                                 <div class='col-md-8 col-xs-12'>
-                                          <?= Form::text('acticity_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                          <!-- <?= Form::text('activities_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?> -->
+                                          <input class="form-control" name="activities_description" id="activities_description" style="margin-bottom: 0px;" maxlength="100" required ></input>
                                 </div>
                             </div>
                         </div>                      
@@ -112,7 +117,10 @@ label.control-label {
                           <div class='col-md-11 col-xs-12'>
                           <label class='control-label col-md-4 col-xs-12'><h5><b>เพิ่มรายละเอียดกิจกรรม : </b></h5></label>
                           <div class='col-md-8 col-xs-12'>
-                            <?= Form::textarea('activities_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
+                            <!-- <?= Form::textarea('activities_detail', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?> -->
+
+                            <textarea class="form-control" name="activities_detail" id="activities_detail" rows="4" cols="50" style="margin-bottom: 5px" required></textarea>
+
                           </div>
                           </div>
                         </div>

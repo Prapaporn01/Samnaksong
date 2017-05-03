@@ -14,7 +14,7 @@ class PlaceuserController extends Controller
      */
     public function index()
     {
-        $item= Place::paginate(5);
+        $item= Place::orderBy('place_id', 'desc')->paginate(5);
         return view('User.PlaceUser',['place'=>$item]);
     }
 

@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Guestbook</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,แม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,สมุดเยี่ยมชม,แสดงความคิดเห็น,Samnaksong Siri Mongkon,วัด"/>
+</head>
+</html>
 <style type="text/css">
 body{ background-image: url(images/bg1.jpg); }
 .widget-area.blank {
@@ -242,14 +249,14 @@ margin-right: 7px;
                 <div class="col-md-2 col-xs-2">
                     <div class="thumbnail">
 
-                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    <img class="img-responsive user-photo" src="{{asset('images/avatar_2x.png')}}">
                     </div><!-- /thumbnail -->
                 </div><!-- /col-sm-1 -->
 
                 <div class="col-md-10 col-xs-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        <strong><fontTh style="font-size:18px;color:#663300;">{{$row->guest_name}}</fontTh></strong> <span class="text-muted"><fontTh style="font-size:14px;">แสดงความคิดเห็นเมื่อ : {{$row->guest_date}}</fontTh></span>
+                        <strong><fontTh style="font-size:18px;color:#663300;">{{$row->guest_name}}</fontTh></strong> <span class="text-muted"><fontTh style="font-size:14px;">แสดงความคิดเห็นเมื่อ :{{ Carbon\Carbon::parse($row->guest_date)->format('d-m-Y ') }}</fontTh></span>
                         </div>
                         <div class="panel-body" style="color:black;">{{$row->guest_detail}}</div><!-- /panel-body -->
                     </div><!-- /panel panel-default -->
@@ -269,5 +276,5 @@ margin-right: 7px;
 
 
 </body>
-</html>
+
 @stop

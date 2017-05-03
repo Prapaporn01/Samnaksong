@@ -150,7 +150,7 @@ session_start();
                                 <label class='control-label col-md-2 col-xs-12'><h5><b>ชื่อ :</b></h5></label>
                                 <div class='col-md-9 col-xs-12'>
                                     <div class='form-group internal'>
-                                        <?= Form::text('place_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                        <?= Form::text('place_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>50]); ?>
                                         
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ session_start();
                             <div class='col-md-11 col-xs-12'>
                                 <label class='control-label col-md-2 col-xs-12'><h5><b>คำอธิบาย :</b></h5></label>
                                 <div class='col-md-9 col-xs-12'>
-                                    <?= Form::textarea('place_description', null, ['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>
+                                    <?= Form::textarea('place_description', null, ['class' => 'form-control','style'=>'margin-bottom: 5px','maxlength'=>200]); ?>
                                     
                                 </div>
                             </div>

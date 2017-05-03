@@ -108,7 +108,7 @@ b.font1{
                                   
                         <td><a href="{{ url('/News/'.$row->news_id.'/edit')}}"><button class="btn btn-primary btn-lg active btn-sm" type="submit"><b class="font1">แก้ไข</b></button></a></td>
 
-                        <?= Form::open(array('url' => 'News/' . $row->news_id,
+                        <?= Form::open(array('url' => 'News/'. $row->news_id,
                         'method' => 'delete')) ?> 
                         <td>
                         <button href="#delete{{$row->news_id }}" type="submit" class="btn btn-danger btn-lg active btn-sm" onclick="return confirm('ต้องการลบข้อมูลข่าวประชาสัมพันธ์?')" ><b class="font1">ลบอัลบัม</b></button>

@@ -118,6 +118,7 @@ label.control-label {
                                           <label class='control-label col-md-6 col-xs-12'>เพิ่มรูปปก</label>
                                             <div class='col-md-6 col-xs-12'>
                                               <?= Form::file('kingpinmain_pic', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
+
                                             </div>
                                       </div>
                                   </div>  
@@ -127,7 +128,8 @@ label.control-label {
                                         <div class='col-md-9 col-xs-12'>
                                                 <label class='control-label col-md-6 col-xs-12'><h5><b>เพิ่มชื่อสิ่งสำคัญภายในสำนักสงฆ์ : </b></h5></label>
                                                 <div class='col-md-6 col-xs-12'>
-                                                  <?= Form::text('kingpin_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                                   <?= Form::text('kingpin_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>50]); ?> 
+
                                                 </div>         
                                         </div>
                                   </div>

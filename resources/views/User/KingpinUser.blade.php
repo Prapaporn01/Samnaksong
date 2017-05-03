@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>KingpinUser</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,แม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,สิ่งสำคัญ,วัด,พระพุทธรูป,วิหารมณีรัตนะ,ศาลา,พระเจ้า9ติ้ว,พระเจ้าเก้าติ้ว,ฤาษี,นรสิงห์,รูปปั้น,ท้าวเวสสุวรรณภิภพ,ท้าวเวสสุวรรณพิทักษ์,Samnaksong Siri Mongkon"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -231,11 +238,6 @@ img.full{
           </div>
 
 
-
-
-
-
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -251,5 +253,4 @@ img.full{
 
 </script>
 </body>
-</html>
 @stop

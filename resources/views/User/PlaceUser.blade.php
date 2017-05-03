@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Place</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,วัดแม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,วัด,สถานที่,สถานีเกษตรหลวงดอยอินทนนท์,เทศบาลตำบลสบเตี๊ยะ,พระธาตุศรีจอมทอง,พระธาตุศรีจอมทองวรวิหาร,โรงพยาบาลจอมทอง,Samnaksong Siri Mongkon"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;

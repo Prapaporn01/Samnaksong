@@ -127,7 +127,7 @@ label.control-label {
                                     <div class='col-md-9 col-xs-12'>
                                             <label class='control-label col-md-6 col-xs-12'>เพิ่มชื่อวัตถุมงคล :</label>
                                             <div class='col-md-6 col-xs-12'>
-                                             <?= Form::text('sacred_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                             <?= Form::text('sacred_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>100]); ?>
                                             </div>         
                                     </div>
                               </div>

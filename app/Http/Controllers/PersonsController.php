@@ -62,6 +62,7 @@ class PersonsController extends Controller
             $person->person_file_pic = $filename;
               File::delete(public_path() . '/images/' . $person->person_file_pic);
         }
+        
         $person->save();
 
         return redirect()->action('PersonsController@index');

@@ -47,8 +47,7 @@ session_start();
 
                      <?php foreach ($activities_pic as $row) { ?>
                       <tr>
-                        <td>   
-                                               
+                        <td>                                
                             <img src='../images/resize/<?php echo $row->activities_file_pic; ?>'>
                         </td>
 
@@ -61,8 +60,6 @@ session_start();
                         </td>
                            
                         {!! Form::close() !!}
-
-
                                         
                       </tr>
                       <?php } ?>

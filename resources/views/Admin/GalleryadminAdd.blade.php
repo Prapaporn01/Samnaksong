@@ -175,7 +175,8 @@ body {
                                 <label class='control-label col-md-4 col-xs-12'><h4><b>คำอธิบายรูปภาพ :</b></h4></label>
                                 <div class='col-md-8 col-xs-12'>
                                 <div class='form-group internal'>
-                                <?= Form::text('gallery_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                               
+                                 <input  class="form-control" name="gallery_detail" id="activities_name" style="margin-bottom: 0px;" maxlength="80" required ></input>
                                 </div>
                               </div>         
                         </div>

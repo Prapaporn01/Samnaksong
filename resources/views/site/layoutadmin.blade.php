@@ -246,7 +246,7 @@ div.font16{
                           </li>
 
                           <li>
-                                <div class="fontsize16"><fontTh><img src="{{url('images/iconad.png')}}" style="    margin-top: 10px;"><i> &nbsp;Admin<a href="{{ url ('logout') }}" style="color:yellow;"> &nbsp;&nbsp;ออกจากระบบ</i></a></fontTh></div>                            
+                                <div class="fontsize16"><fontTh><img src="{{url('images/iconad.png')}}" style="    margin-top: 10px;"> &nbsp;Admin<a href="{{ url ('logout') }}" style="color:yellow;"><i>&nbsp;&nbsp;ออกจากระบบ</i></a></fontTh></div>                            
                           </li>
           
                       </ul>

@@ -102,7 +102,7 @@ label.control-label {
                                               <div class='col-md-10 col-xs-12'>
                                                       <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มหัวข้อข่าว :</b></h5></label>
                                                       <div class='col-md-9 col-xs-12'>
-                                                      <?= Form::text('news_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                                      <?= Form::text('news_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>80]); ?>
                                                        
                                                       </div>         
                                               </div>
@@ -112,7 +112,7 @@ label.control-label {
                                           <div class='col-md-10 col-xs-12'>
                                           <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มคำอธิบาย :</b></h5></label>
                                           <div class='col-md-9 col-xs-12'>
-                                          <?= Form::text('news_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                          <?= Form::text('news_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>100]); ?>
                                             
                                           </div>
                                           </div>
@@ -122,7 +122,7 @@ label.control-label {
                                           <div class='col-md-10 col-xs-12'>
                                           <label class='control-label col-md-3 col-xs-12'><h5><b>เพิ่มรายละเอียด :</b></h5></label>
                                           <div class='col-md-9 col-xs-12'>
-                                          <?= Form::text('news_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                          <?= Form::textarea('news_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                             
                                           </div>
                                           </div>

@@ -28,6 +28,7 @@ Route::get('/layoutadmin',function(){
 Route::get('/Loginadmin',function(){
 	return view('site.layoutloginadmin');
 });
+
 // Route::get('/layoutuser',function(){
 // 	return view('site.layoutuser');
 // });

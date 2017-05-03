@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Map</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,วัดแม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,วัด,ที่ตั้งสำนักสงฆ์,Samnaksong Siri Mongkon"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -89,23 +96,23 @@
             <!-- <div class="col-md-12 col-xs-12"> -->
             <br><br><br>
             <center style="color:#330033; font-size:24px;"><b><fontTh>ที่ตั้งวัดแม่เตี๊ยะใต้ (สำนักสงฆ์สิริมงคล)</fontTh></b></center>
-                    <br>
-                   <center style="color:black; font-size:14px;"> ตั้งอยู่  ณ  บ้านแม่เตี๊ยะใต้  หมู่ที่  ๑๔  ต.สบเตี๊ยะ  อ.จอมทอง  จังหวัดเชียงใหม่ </center><br>
+            <br>
+            <center style="color:black; font-size:14px;"> ตั้งอยู่  ณ  บ้านแม่เตี๊ยะใต้  หมู่ที่  ๑๔  ต.สบเตี๊ยะ  อ.จอมทอง  จังหวัดเชียงใหม่ </center><br>
                   
                   <div id="map" style="width: 95%; height: 500px; "></div>
-                  <script>
-                    function initMap() {
-                      var uluru = {lat: 18.39211, lng: 98.65504};
-                      var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 15,
-                        center: uluru
-                      });
-                      var marker = new google.maps.Marker({
-                        position: uluru,
-                        map: map
-                      });
-                    }
-                  </script>
+                      <script>
+                        function initMap() {
+                          var uluru = {lat: 18.39211, lng: 98.65504};
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: uluru
+                          });
+                          var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                          });
+                        }
+                      </script>
                   
                       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGw8Z902O-SXaqa29ALNuqX7DwMEfdvgQ&callback=initMap"
                       async defer></script>

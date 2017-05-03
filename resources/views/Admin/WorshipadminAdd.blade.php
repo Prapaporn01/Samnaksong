@@ -100,7 +100,7 @@ label.control-label {
                                     <div class='col-md-9 col-xs-12 '>
                                             <label class='control-label col-md-6 col-xs-12'><h5><b>เพิ่มชื่อเครื่องสักการะบูชา :</b></h5></label>
                                             <div class='col-md-6 col-xs-12'>
-                                              <?= Form::text('worship_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                              <?= Form::text('worship_name', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>50]); ?>
                                             </div>         
                                     </div>
                               </div>

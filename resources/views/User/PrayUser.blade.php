@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Pray</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,แม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,บทสวดมนต์,เสียงสวดมนต์,download,โหลด,สวดมนต์,Samnaksong Siri Mongkon,วัด"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -106,8 +113,7 @@
             <br>
             <br>
 
-        <object data="{{ asset('/pdf/'.$row->pray_detail)}}" type="application/pdf" width="100%" height="600"  style="margin-bottom:10%;">
-            
+        <object data="{{ asset('/pdf/'.$row->pray_detail)}}" type="application/pdf" width="100%" height="600"  style="margin-bottom:10%;">     
         </object>
                 @endif
             @endforeach
@@ -116,5 +122,4 @@
         </div>
 </body>
 
-</html>
 @stop

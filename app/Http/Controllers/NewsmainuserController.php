@@ -49,15 +49,16 @@ class NewsmainuserController extends Controller
      */
     public function show($id)
     {  
+        //forNewsMainUser
         $item=DB::table('news_pic')->Join('news','news_pic.news_id','=','news.news_id')       
             ->select('news.*','news_pic.news_file_pic')->where('news.news_id',$id)
             ->paginate(9);
 
-
+         
         $item2= News::where('news_id','=',$id)
-        ->get();
+            ->get();
 
-         $item3=DB::table('news_pic')->Join('news','news_pic.news_id','=','news.news_id')       
+        $item3=DB::table('news_pic')->Join('news','news_pic.news_id','=','news.news_id')       
             ->select('news.*','news_pic.news_file_pic')->where('news.news_id',$id)
             ->get();
 

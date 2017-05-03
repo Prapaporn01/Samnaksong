@@ -26,6 +26,7 @@ class NewsRequest extends FormRequest
     return [
     'news_title' => 'required',
     'news_description' => 'required',
+    'news_detail' => 'required',
     'newsmain_pic' => 'required|mimes:jpeg,png',
    
     ];
@@ -36,6 +37,7 @@ class NewsRequest extends FormRequest
     return [
     'news_title.required' => 'กรุณากรอกหัวข้อข่าว',
     'news_description.required' => 'กรุณากรอกคคำอธิบาย',
+    'news_detail.required' => 'กรุณากรอกครายละเอียด',
     'newsmain_pic.required' => 'กรุณาเลือกไฟล์ภาพรูปปก',
     'newsmain_pic.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,png'];
     }

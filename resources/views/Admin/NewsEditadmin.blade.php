@@ -158,7 +158,7 @@ label.control-label {
                                           <div class='col-md-11 col-xs-12'>
                                           <label class='control-label col-md-3 col-xs-12'><h5><b>แก้ไขรายละเอียด :</b></h5></label>
                                           <div class='col-md-9 col-xs-12'>
-                                          <?= Form::text('news_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                          <?= Form::textarea('news_detail', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
                                             
                                           </div>
                                           </div>

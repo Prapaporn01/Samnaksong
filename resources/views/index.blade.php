@@ -59,8 +59,7 @@
                           </div>                         
                         </div> 
                     </div> 
-            </div>
-           
+            </div>        
             @endforeach
             
             <p align="right">
@@ -96,7 +95,7 @@
             <br>
 
             <div class="list-group">
-			  	    <fontTh><a href="#" class="list-group-item" style="font-size:20px;color:#003333;"><center><fontTh>ประวัติสำนักสงฆ์</fontTh></center></a></fontTh>
+			  	    <fontTh><a href="{{ url ('/History')}}" class="list-group-item" style="font-size:20px;color:#003333;"><center><fontTh>ประวัติสำนักสงฆ์</fontTh></center></a></fontTh>
               <fontTh><a href="{{ url ('/DirectoryMainUser') }}" style="font-size:20px;color:#003333;" class="list-group-item"><center><fontTh>ทำเนียบเจ้าอาวาส</fontTh></center></a></fontTh>
               <fontTh><a href="{{ url ('/PersonsUser') }}" style="font-size:20px;color:#003333;" class="list-group-item"><center><fontTh>บุคคลสำคัญที่เกี่ยวข้อง</fontTh></center></a></fontTh>
               <fontTh><a href="{{ url ('MapUser')}}" style="font-size:20px;color:#003333;" class="list-group-item"><center><fontTh>ที่ตั้งสำนักสงฆ์</fontTh></center></a></fontTh>
@@ -200,7 +199,7 @@
                           <div class="left_resize" style="    height: 320;">        
                             <div class="left1" style="border-left-width: 1px;margin-top: 0px;margin-right: 0px;width: 100%;">
                               <div class="col-md-4 col-xs-12">
-                                  <div align="center"><img class="img-responsive" src="{{ url('images/Kingpin/Subkingpin_W8R4vHlo6e.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
+                                  <div align="center"><img class="img-responsive" src="{{ url('images/bb.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
                               </div>
                                 <div class="col-md-8 col-xs-12">
                                     <div align="left"><p><span style="    padding-left: 18px;    margin-left: 0px;font-size:18px;color:#337ab7;"><fontTh>สิ่งสำคัญภายในสำนักสงฆ์</fontTh></span></p><div style="   font-size:16px;">สิ่งสำคัญภายในสำนักสงฆ์ ประกอบไปด้วย พระพุทธรูป รูปปั้น ศาลา เป็นต้น</div></div>
@@ -218,7 +217,7 @@
                           <div class="left_resize" style="    height: 320;">        
                             <div class="left1" style="border-left-width: 1px;margin-top: 0px;margin-right: 0px;width: 100%;">
                               <div class="col-md-4 col-xs-12">
-                                  <div align="center"><img class="img-responsive" src="{{ url('images/Worship/Subworship_ddfUZFBEEl.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
+                                  <div align="center"><img class="img-responsive" src="{{ url('images/aa.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
                               </div>
                                 <div class="col-md-8 col-xs-12">
                                     <div align="left"><p><span style="    padding-left: 18px;    margin-left: 0px;font-size:18px;color:#337ab7;"><fontTh>เครื่องสักการะบูชา</fontTh></span></p><div style="   font-size:16px;">เครื่องสักการะบูชา ประกอบไปด้วย เทียน และ ประทีป </div></div>
@@ -235,7 +234,7 @@
                           <div class="left_resize" style="    height: 320;">        
                             <div class="left1" style="border-left-width: 1px;margin-top: 0px;margin-right: 0px;width: 100%;">
                               <div class="col-md-4 col-xs-12">
-                                  <div align="center"><img class="img-responsive" src="{{ url('images/Sacred/Subsacred_SUOaRLrkpH.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
+                                  <div align="center"><img class="img-responsive" src="{{ url('images/cc.jpg')}}" width="150" height="150" style="    margin-left: 0px;"></div>
                               </div>
                                 <div class="col-md-8 col-xs-12">
                                     <div align="left"><p><span style="    padding-left: 18px;    margin-left: 0px;font-size:18px;color:#337ab7;"><fontTh>วัตถุมงคล</fontTh></span></p><div style="   font-size:16px;">วัตถุมงคล ประกอบไปด้วย พระเครื่อง ผ้ายันต์ พระพุทธรูป เป็นต้น</div></div>

@@ -74,7 +74,7 @@ b.font1{
                                   </div>
                                
                         </td>       
-                        <td><h4 class="font1">{{$row->guest_date}}</h4></td>
+                        <td>{{ Carbon\Carbon::parse($row->guest_date)->format('d-m-Y ') }}</td>
                         
 
                          <?= Form::open(array('url' => 'Guest/' . $row->guest_id,

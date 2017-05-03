@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Persons</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,วัดแม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,วัด,บุคคล,บุคคลสำคัญ,Samnaksong Siri Mongkon"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -143,7 +150,7 @@ div.desc {
                 <div class="col-md-4">
                     <div class="imgpersons" >
                         <div>
-                        <img class="grid__img" src="{{ 'images/Persons/'.$row->person_file_pic }}" alt="Trolltunga Nor<td>way" width="300" height="200" href="#Modal_{{$row->person_id }}" class="btn btn-default btn-sm" data-toggle="modal" type="button">
+                        <button><img class="grid__img" src="{{ 'images/Persons/'.$row->person_file_pic }}" alt="Trolltunga Nor<td>way" width="300" height="200" href="#Modal_{{$row->person_id }}" class="btn btn-default btn-sm" data-toggle="modal" type="button"></button>
                          <div class="grid__item-title" style="font-size:18px;color:#337ab7;" ><fontTh>{{$row->person_name}}</fontTh></div>
                                 <div class="modal fade" id="Modal_{{ $row->person_id  }}" role="dialog" >
                                     <div class="modal-dialog modal-sm" >
@@ -180,5 +187,4 @@ div.desc {
     </div>
 
 </body>
-</html>
 @stop

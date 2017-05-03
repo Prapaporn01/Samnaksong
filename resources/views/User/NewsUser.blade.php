@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>News</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,วัดแม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,วัด,ข่าวประชาสัมพันธ์,Samnaksong Siri Mongkon"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -257,7 +264,7 @@
                     @foreach($news2 as $name)
                       @if ($loop->first)
                           <br>
-                          <div align="right"><font color="black"><fontTh>อัพเดทวันที่ :</fontTh><fontEng> {{ $name->news_datetime->format('d.m.Y H:i:s') }}</fontEng></font></div>
+                          <div align="right"><font color="black"><fontTh>อัพเดทวันที่ :</fontTh><fontEng> {{ $name->news_datetime->format('d.m.Y') }}</fontEng><fontTh>  เวลา :</fontTh><fontEng>{{$name->news_datetime->format('H:i:s') }}</fontEng></font></div>
                           <br><br>
 
                           <center style="color:#330033; font-size:24px;"><b><fontTh>{{$name->news_title}}</fontTh></b></center>
@@ -274,22 +281,21 @@
                       @endif
                     @endforeach
 
-           
-                  @foreach($news3 as $info)
-                    <div class="col-md-10 col-xs-10" >
+           <?php if(count($news3) > 0){ ?> 
+
+                <div class="col-md-10 col-xs-10" >
                     <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:500px;height:440px;overflow:hidden;visibility:hidden;background-color:#24262e;">
                         <!-- Loading Screen -->
                             <div data-u="loading" style="position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);">
                                 <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
                                 <div style="position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;"></div>
                             </div>
-                            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:500px;height:350px;overflow:hidden;">
-                                
-                                 @foreach($news as $row)
+                            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:500px;height:350px;overflow:hidden;">                                
+                                 @foreach($news3 as $row)
                                 <div >
                                     <img class="img-responsive" data-u="image" src="{{asset('images/News/'.$row->news_file_pic)}}" />
                                     <img class="img-responsive" data-u="thumb" src="{{asset('images/News/'.$row->news_file_pic)}}" />
-                                </div>
+                                </div>                                
                                  @endforeach    
                             </div>
 
@@ -307,27 +313,21 @@
                                 <!-- Thumbnail Item Skin End -->
                             </div>
                         <!-- Arrow Navigator -->
-                        <span data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;"></span>
-                        <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;"></span>
-
+                      <span data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;"></span>
+                      <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;"></span>
                     </div>
                     <br>
-                  </div>
+                </div>
+                
+          <?php }?>
 
-                    <script type="text/javascript">jssor_1_slider_init();</script>
-                  </div>
-
-                  @endforeach
              
-        
-                    @foreach($news2 as $info)
-                      @if ($loop->first)
-                    
+                   @foreach($news2 as $info)
+                    @if ($loop->first)
                       <object data="{{ asset('/pdf/'.$info->news_file)}}" type="application/pdf" width="85%" height="600"  style="margin-bottom:10%;"></object>
-
-                      @endif
+                    @endif
                     @endforeach
-
+                   
+<script type="text/javascript">jssor_1_slider_init();</script>
 </body>
-</html>
 @stop

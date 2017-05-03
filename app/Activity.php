@@ -12,5 +12,5 @@ class Activity extends Model
 	protected $dates = ['activities_date'];
 	
     protected $table="activities";
-    protected $fillable=["activities_id","activities_name","activities_detail","activities_date","activitiesmain_pic"];
+    protected $fillable=["activities_id","activities_name","activities_detail","activities_date","activitiesmain_pic","activities_description"];
 }

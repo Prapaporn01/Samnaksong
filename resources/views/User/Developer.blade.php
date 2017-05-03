@@ -1,6 +1,12 @@
 @extends('site.layoutforuser')
-
 @section('menutop')
+<html>
+<head>
+    <title>Developer</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,แม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,ภาควิชาวิทยาการคอมพิวเตอร์,มหาวิทยาลัยเชียงใหม่,คณะวิทยาศาสตร์,ผู้พัฒนาเว็บไซต์,Samnaksong Siri Mongkon,วัด"/>
+</head>
+</html>
 <style type="text/css">
     .breadcrumb {
     padding: 0px;
@@ -157,7 +163,7 @@ hr.style2 {
                             <div class="left_resize" style="    height: 50%;">        
                               <div class="left1" style="border-left-width: 1px;margin-top: 5px;margin-right: 0px;width: 100%;">
                                 
-                                    <div align="center"><img class="img-responsive" src="{{asset('images/one.png') }}" width="150" height="150" style="    margin-left: 0px;"></div>
+                                    <div align="center"><img class="img-responsive" src="{{asset('images/one1.png') }}" width="150" height="150" style="    margin-left: 0px;"></div>
                                   <br>
                                       <div align="center"><p><span style="    padding-left: 20px;    margin-left: 0px; font-size:18px;color:#336699; ">ผู้พัฒนาเว็บไซต์</span><br><div style="color:black;font-size:18px;"><fontTh>นางสาว ประภาภรณ์ ทิพย์รักษ์</fontTh></div></p></div>   
                               </div>                         
@@ -170,9 +176,9 @@ hr.style2 {
                             <div class="left_resize" style="    height: 60%;">        
                               <div class="left1" style="border-left-width: 1px;margin-top: 5px;margin-right: 0px;width: 100%;">
                                 
-                                    <div align="center"><img class="img-responsive" src="{{asset('images/maytinee.png') }}" width="150" height="150" style="    margin-left: 0px;"></div>
+                                    <div align="center"><img class="img-responsive" src="{{asset('images/maytinee1.png') }}" width="150" height="150" style="    margin-left: 0px;"></div>
 
-                                      <div align="center"><p><span style="    padding-left: 20px;    margin-left: 0px; font-size:18px;color:#336699;"><br>อาจารย์ที่ปรึกษา</span><br><div style="color:black;font-size:18px;margin-bottom: 20px;"><fontTh>อ.ดร. เมทินี เขียวกันยะ</fontTh></div></p></div>   
+                                      <div align="center"><p><span style="    padding-left: 20px;    margin-left: 0px; font-size:18px;color:#336699;"><br>อาจารย์ที่ปรึกษา</span><br><div style="color:black;font-size:18px;margin-bottom: 10px;"><fontTh>อ.ดร. เมทินี เขียวกันยะ</fontTh></div></p></div>   
                               </div>                         
                             </div> 
                         </div> <br>

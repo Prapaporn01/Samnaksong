@@ -129,8 +129,8 @@ class PrayController extends Controller
     public function destroy($id)
     {
         $pray = Pray::find($id);
-            File::delete(public_path() . '\\audio\\' . $pray->pray_sound);
-            File::delete(public_path() . '\\pdf\\' . $pray->pray_detail);
+            File::delete(public_path() . '\\audio\\'. $pray->pray_sound);
+            File::delete(public_path() . '\\pdf\\'. $pray->pray_detail);
             $pray->delete();
         return redirect()->action('PrayController@index');
     }
@@ -140,7 +140,7 @@ class PrayController extends Controller
     {
 
         $pray= Pray::find($id);
-            File::delete(public_path() . '\\pdf\\' . $pray->pray_detail);
+            File::delete(public_path().'\\pdf\\'.$pray->pray_detail);
         $pray->pray_detail  = null;
 
         $pray->save();

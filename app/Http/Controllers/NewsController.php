@@ -49,7 +49,7 @@ class NewsController extends Controller
         if ($request->hasFile('files')) {
              $count = count($request->file('files'));
 
-            if ($count>=25) {
+            if ($count>25) {
           
                 Session::flash('flash_message','อัพโหลดรูปในอัลบัมได้ไม่เกิน 25 รูปเท่านั้น!!!');
                 return redirect()->back();
@@ -66,7 +66,7 @@ class NewsController extends Controller
         if ($request->hasFile('newsmain_pic')) {// hasFile + variable name of image
             // $filename = str_random(10) . '.' . $request->file('place_pic')->getClientOriginalExtension();
             $filename = "Newsmain_".str_random(10) . '.' . $request->file('newsmain_pic')->getClientOriginalExtension();
-            $request->file('newsmain_pic')->move(public_path() . '/images/', $filename);
+            $request->file('newsmain_pic')->move(public_path() .'/images/', $filename);
             Image::make(public_path() . '/images/' . $filename )->resize(150, 150)->save(public_path() . '/images/resize/' . $filename);
             $news->newsmain_pic = $filename;
             File::delete(public_path() . '/images/' . $news->newsmain_pic);
@@ -75,7 +75,7 @@ class NewsController extends Controller
         $news->news_file=$request->news_file;
         if ($request->hasFile('news_file')){                
             $filename = "Newsfile_".str_random(10) . '.' .$request->file('news_file')->getClientOriginalExtension();
-            $news->news_file= $request->file('news_file')->move(public_path() . '/pdf/', $filename);
+            $news->news_file= $request->file('news_file')->move(public_path() .'/pdf/', $filename);
             $news->news_file = $filename;
         }
          $news->save();
@@ -187,8 +187,9 @@ class NewsController extends Controller
 
             File::delete(public_path() . '\\images\\' . $news->newsmain_pic);
             File::delete(public_path() . '\\images\\resize\\' . $news->newsmain_pic);
+            File::delete(public_path() . '\\pdf\\' . $news->news_file);
         
-   $news_pics = DB::table('news_pic')->get()->where('news_id',$id);
+        $news_pics = DB::table('news_pic')->get()->where('news_id',$id);
 
 
     foreach ($news_pics as $news_pic)
@@ -221,7 +222,6 @@ class NewsController extends Controller
             File::delete(public_path() . '\\pdf\\' . $news->news_file);
         $news->news_file  = null;
         $news->save();
-
         return redirect()->action('NewsController@edit', ['id' => $id]);
 
     }

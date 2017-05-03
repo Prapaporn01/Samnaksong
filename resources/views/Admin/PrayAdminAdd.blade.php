@@ -148,7 +148,7 @@ session_start();
                         <div class='col-md-10 col-xs-12'>
                                 <label class='control-label col-md-3 col-xs-12'><h5><b>ชื่อบทสวดมนต์ :</b></h5></label>
                                 <div class='col-md-9 col-xs-12'>
-                                <?= Form::text('pray_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>
+                                <?= Form::text('pray_title', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px','maxlength'=>50]); ?>
                                 </div>         
                         </div>
                   </div>
@@ -159,7 +159,9 @@ session_start();
                     <div class='col-md-10 col-xs-12' style="    padding-top: 15px;">
                     <label class='control-label col-md-3 col-xs-12'><h5><b>ไฟล์บทสวดมนต์ :</b></h5><div style="font-size:12px;">(ไฟล์นามสกุล .pdf)</div></label>
                         <div class='col-md-8 col-xs-12'>
-                        <?= Form::file('pray_detail', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?>
+                       <!--  <?= Form::file('pray_detail', null, ['class' => 'formcontrol','style'=>'margin-bottom: 5px'])  ?> -->
+                       <input type="file" name="pray_detail" id="pray_detail" style="margin-bottom: 5px;" required>
+
                       </div>
                     </div>
                   </div>

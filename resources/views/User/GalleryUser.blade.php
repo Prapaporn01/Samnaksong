@@ -1,5 +1,12 @@
 @extends('site.layoutforuser')
 @section('menutop')
+<html>
+<head>
+    <title>Gallery</title>
+    <meta name="description" content="สำนักสงฆ์สิริมงคล หรือ วัดแม่เตี๊ยะใต้ อำเภอจอมทอง จังหวัดเชียงใหม่ เป็นสำนักสงฆ์ที่มีความสงบ ร่มรื่น ควรค่าแก่การอนุลักษณ์ให้พุธศาสนิกชนได้ศึกษา"/>
+    <meta name="keywords" content="สำนักสงฆ์สิริมงคล,แม่เตี๊ยะใต้,จอมทอง,เชียงใหม่,ศาลา,แกลอรี่,gallery,Samnaksong Siri Mongkon,วัด"/>
+</head>
+</html>
 <style type="text/css">
       .breadcrumb {
     padding: 0px;
@@ -77,7 +84,7 @@
             <div class="container">
                   <ul class="breadcrumb">
                       <li><a href="{{ url('/')}}" style="font-size:18px;"><fontTh>กลับสู่หน้าหลัก</fontTh></a></li>
-                      <li class="active"><a href="javascript:void(0);" style="font-size:18px;"><fontTh>แกลอรี่สิ่งสำคัญภายในสำนักสงฆ์</fontTh></a></li>
+                      <li class="active"><a href="javascript:void(0);" style="font-size:18px;"><fontTh>แกลอรี่</fontTh></a></li>
                   </ul>          
             </div>
             

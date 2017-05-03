@@ -112,7 +112,7 @@ label.control-label {
                             <div class='col-md-10 col-xs-12'>
                                 <label class='control-label col-md-4 col-xs-12'><h5><b>แก้ไขคำอธิบาย :</b></h5></label>
                                 <div class='col-md-6 col-xs-12'>
-                                  <?= Form::text('activity_description', null,['class' => 'form-control', 'style'=>'margin-bottom: 5px']); ?>              
+                                  <?= Form::text('activities_description', null,['class' => 'form-control','style'=>'margin-bottom: 5px']); ?>              
                                 </div>
                             </div>
                         </div>         
